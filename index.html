@@ -3,57 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OverFlux</title>
+    <title>OVERFLUX</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="logo">OverFlux</div>
-        <nav>
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="sidebar">
+            <div class="logo">OVERFLUX</div>
             <ul>
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#concept">CONCEPT</a></li>
+                <li><a href="#residents">RESIDENTS</a></li>
+                <li><a href="#whats-on">WHAT'S ON</a></li>
+                <li><a href="contacts.html">VISIT US</a></li>
             </ul>
+            <div class="social-links">
+                <a href="#">F</a>
+                <a href="#">P</a>
+                <a href="#">I</a>
+                <a href="#">V</a>
+                <a href="#">Y</a>
+            </div>
         </nav>
-    </header>
 
-    <section id="home" class="tab-content active">
-        <h1>Welcome to OverFlux</h1>
-        <p>This is the home page of the OverFlux website. Explore and enjoy!</p>
-    </section>
+        <!-- Main Content -->
+        <section class="hero" id="home">
+            <img src="images/hand-sculpture.jpg" alt="Hand Sculpture" class="hand-sculpture">
+            <div class="cta">
+                <a href="#what-we-do" class="cta-button">WHAT WE DO ></a>
+            </div>
+        </section>
 
-    <section id="about" class="tab-content">
-        <h1>About Us</h1>
-        <p>Learn more about OverFlux and our mission to bring the best experience to our users.</p>
-    </section>
+        <!-- Sections -->
+        <section id="concept">
+            <h2>Concept</h2>
+            <p>Our vision and creative approach...</p>
+        </section>
 
-    <section id="contact" class="tab-content">
-        <h1>Contact Us</h1>
-        <p>Get in touch with us through our contact form or social media channels.</p>
-    </section>
+        <section id="residents">
+            <h2>Residents</h2>
+            <p>Meet our artists and contributors...</p>
+        </section>
 
-    <footer>
-        <p>&copy; 2024 OverFlux. All Rights Reserved.</p>
-    </footer>
+        <section id="whats-on">
+            <h2>What's On</h2>
+            <p>Upcoming events and exhibitions...</p>
+        </section>
 
-    <script>
-        const tabs = document.querySelectorAll('nav ul li a');
-        const contents = document.querySelectorAll('.tab-content');
-
-        tabs.forEach(tab => {
-            tab.addEventListener('click', function(event) {
-                event.preventDefault();
-
-                // Убираем активные классы у всех вкладок и контента
-                tabs.forEach(t => t.classList.remove('active'));
-                contents.forEach(c => c.classList.remove('active'));
-
-                // Добавляем активный класс к выбранной вкладке и соответствующему контенту
-                this.classList.add('active');
-                document.querySelector(this.getAttribute('href')).classList.add('active');
-            });
-        });
-    </script>
+        <section id="visit-us">
+            <h2>Visit Us</h2>
+            <p>How to find us...</p>
+        </section>
+    </div>
 </body>
 </html>

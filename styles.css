@@ -1,76 +1,101 @@
-* {
+body, html {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body {
     font-family: Arial, sans-serif;
-    background-color: #fff;
-    color: #333;
-    padding: 0;
-    margin: 0;
+    background-color: #ffffff;
+    color: #000000;
 }
 
-header {
-    background-color: #9F00F1;
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar {
+    background-color: #ffffff;
+    width: 200px;
     padding: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    height: 100vh;
+    border-right: 2px solid #e0e0e0;
 }
 
 .logo {
     font-size: 24px;
-    color: white;
     font-weight: bold;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
 }
 
-nav ul {
+.sidebar ul {
     list-style: none;
-    display: flex;
-    gap: 20px;
+    padding: 0;
 }
 
-nav ul li a {
-    color: white;
+.sidebar ul li {
+    margin: 15px 0;
+}
+
+.sidebar ul li a {
     text-decoration: none;
-    padding: 10px 20px;
-    transition: background-color 0.3s ease;
+    color: #000000;
+    font-size: 14px;
 }
 
-nav ul li a:hover, nav ul li a.active {
-    background-color: white;
-    color: #9F00F1;
-    border-radius: 4px;
+.social-links {
+    display: flex;
+    flex-direction: column;
 }
 
-.tab-content {
-    display: none;
-    padding: 40px;
-    background-color: #f9f9f9;
-    color: #333;
-    min-height: 300px;
+.social-links a {
+    text-decoration: none;
+    color: #000000;
+    margin: 10px 0;
+    font-size: 20px;
 }
 
-.tab-content.active {
-    display: block;
+.hero {
+    position: relative;
+    background-color: #AA00FF;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
 }
 
-h1 {
-    margin-bottom: 20px;
-    color: #9F00F1;
+.hero .hand-sculpture {
+    max-width: 100%;
+    height: auto;
 }
 
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #f1f1f1;
+.hero .cta {
     position: absolute;
-    width: 100%;
-    bottom: 0;
+    bottom: 20px;
+    right: 20px;
 }
 
-footer p {
-    color: #9F00F1;
+.cta-button {
+    text-decoration: none;
+    color: #000000;
+    font-size: 16px;
+    border: 2px solid #000000;
+    padding: 10px 20px;
+    background-color: #ffffff;
+}
+
+section {
+    padding: 50px;
+}
+
+section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+section p {
+    font-size: 16px;
 }
