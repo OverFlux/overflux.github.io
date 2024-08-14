@@ -1,26 +1,59 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>О нас</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>OVERFLUX</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="img/logo_left.png" alt="Логотип слева">
-            <img src="img/logo_right.png" alt="Логотип справа">
-        </div>
-        <nav>
-            <a href="index.html" class="button">Главная</a>
-            <a href="about.html" class="button">О нас</a>
-            <a href="contacts.html" class="button">Контакты</a>
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="sidebar">
+            <div class="logo">OVERFLUX</div>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="#residents">RESIDENTS</a></li>
+                <li><a href="#whats-on">WHAT'S ON</a></li>
+                <li><a href="contacts.html">CONTACTS</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="#" class="social-icon">F</a>
+                <a href="#" class="social-icon">P</a>
+                <a href="#" class="social-icon">I</a>
+                <a href="#" class="social-icon">V</a>
+                <a href="#" class="social-icon">Y</a>
+            </div>
         </nav>
-    </header>
-    <main>
-        <h1>О нас</h1>
-        <p>Здесь можно добавить информацию о вашей команде и целях проекта.</p>
-    </main>
+
+        <!-- Main Content -->
+        <section class="hero" id="home">
+            <div class="cta">
+                <a href="#what-we-do" class="cta-button">WHAT WE DO ></a>
+            </div>
+        </section>
+
+        <!-- Sections -->
+        <section id="concept">
+            <h2>Concept</h2>
+            <p>Our vision and creative approach...</p>
+        </section>
+
+        <section id="residents">
+            <h2>Residents</h2>
+            <p>Meet our artists and contributors...</p>
+        </section>
+
+        <section id="whats-on">
+            <h2>What's On</h2>
+            <p>Upcoming events and exhibitions...</p>
+        </section>
+
+        <section id="visit-us">
+            <h2>Visit Us</h2>
+            <p>How to find us...</p>
+        </section>
+    </div>
 </body>
 </html>

@@ -1,3 +1,5 @@
+
+/* Основные стили */
 body, html {
     margin: 0;
     padding: 0;
@@ -6,15 +8,16 @@ body, html {
     color: #000000;
 }
 
+/* Контейнер для основной структуры */
 .container {
     display: flex;
-    flex-direction: row;
 }
 
+/* Боковая панель навигации */
 .sidebar {
     background-color: #ffffff;
     width: 200px;
-    padding: 20px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -22,31 +25,42 @@ body, html {
     border-right: 2px solid #e0e0e0;
 }
 
+/* Логотип */
 .logo {
     font-size: 24px;
+    color: black; 
     font-weight: bold;
     writing-mode: vertical-rl;
     text-orientation: upright;
 }
 
+/* Список навигации */
 .sidebar ul {
     list-style: none;
     padding: 0;
 }
 
-.sidebar ul li {
-    margin: 15px 0;
-}
-
+/* Ссылки в навигации */
 .sidebar ul li a {
     text-decoration: none;
     color: #000000;
     font-size: 14px;
+    display: block; /* Для удобного кликабельного региона */
+    padding: 10px; /* Внутренние отступы */
+    transition: background-color 0.1s; /* Плавный переход для фона */
+    border-radius: 15px;
 }
 
+.sidebar ul li a:hover {
+    background-color: #f0f0f0; /* Фон при наведении */
+    border-radius: 15px;
+}
+
+/* Социальные ссылки */
 .social-links {
     display: flex;
     flex-direction: column;
+    margin-top: 20px; /* Отступ сверху от списка навигации */
 }
 
 .social-links a {
@@ -56,23 +70,42 @@ body, html {
     font-size: 20px;
 }
 
+/* Герой секция */
 .hero {
     position: relative;
-    background-color: #AA00FF;
-    flex-grow: 1;
+    background-color: #B07AD2;
+    width: 1200px; /* Устанавливаем фиксированную ширину */
+    height: 800px; /* Устанавливаем фиксированную высоту */
+    overflow: hidden; /* Скрываем содержимое, выходящее за пределы */
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    overflow: hidden;
 }
 
+/* Изображения в герое */
 .hero .hand-sculpture {
-    max-width: 100%;
-    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover; /* Изображение заполняет контейнер, сохраняя пропорции */
 }
 
-.hero .cta {
+.hero .team {
+    position: absolute;
+    top: 45%;
+    left: 20%;
+    width: auto;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover; /* Изображение заполняет контейнер, сохраняя пропорции */
+    border: 1px solid #000000;
+}
+
+/* Кнопка вызова действия */
+.cta {
     position: absolute;
     bottom: 20px;
     right: 20px;
@@ -85,8 +118,15 @@ body, html {
     border: 2px solid #000000;
     padding: 10px 20px;
     background-color: #ffffff;
+    transition: background-color 0.1s, color 0.1s; /* Плавное изменение цвета фона и текста */
 }
 
+.cta-button:hover {
+    background-color: #f0f0f0; /* Цвет фона при наведении */
+    color: #000000; /* Цвет текста при наведении */
+}
+
+/* Стили для секций */
 section {
     padding: 50px;
 }
@@ -98,4 +138,19 @@ section h2 {
 
 section p {
     font-size: 16px;
+}
+
+/* Стили для текстовых блоков в герое */
+.hero .founder-text {
+    margin-top: 20px; /* Отступ сверху */
+    margin-bottom: 20px; /* Отступ снизу */
+    padding: 10px; /* Отступы вокруг текста */
+    text-align: start; /* Выравнивание текста */
+    position: absolute; /* Абсолютное позиционирование */
+    top: 400px; /* Регулируйте значение для перемещения вниз */
+    left: 350px; /* Регулируйте значение для перемещения вправо */
+    background-color: #f9f9f9; /* Фоновый цвет для лучшего контраста */
+    border: 1px solid #000000;
+    max-width: 330px; /* Максимальная ширина блока текста */
+    word-wrap: break-word; /* Перенос слов, если они выходят за пределы блока */
 }
