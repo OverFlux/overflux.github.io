@@ -70,32 +70,41 @@ body, html {
     font-size: 20px;
 }
 
+/* Стили для активной ссылки */
+.sidebar ul li a.active {
+    background-color: #f0f0f0; /* Цвет фона для активного элемента */
+    border-radius: 15px;
+}
+
 /* Герой секция */
 .hero {
     position: relative;
     background-color: #B07AD2;
-    width: 1200px; /* Устанавливаем фиксированную ширину */
-    height: 800px; /* Устанавливаем фиксированную высоту */
-    overflow: hidden; /* Скрываем содержимое, выходящее за пределы */
+    flex-grow: 1;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100vh; /* Фиксированная высота */
+    width: 100%; /* Фиксированная ширина */
+    overflow: hidden;
+    box-sizing: border-box; /* Включает padding и border в общие размеры блока */
 }
 
 /* Изображения в герое */
-.hero .hand-sculpture {
+.hero .hand-sculpture, .hero .team {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    max-width: 100%; /* Ограничение максимальной ширины */
+    max-height: 100%; /* Ограничение максимальной высоты */
     width: auto;
-    height: 100%;
+    height: auto;
     transform: translate(-50%, -50%);
-    object-fit: cover; /* Изображение заполняет контейнер, сохраняя пропорции */
+    object-fit: contain; /* Изображение сохраняет свои пропорции и вписывается в блок */
+    box-sizing: border-box;
 }
 
 .hero .team {
     position: absolute;
-    top: 45%;
+    top: 39%;
     left: 20%;
     width: auto;
     height: 100%;
@@ -147,10 +156,40 @@ section p {
     padding: 10px; /* Отступы вокруг текста */
     text-align: start; /* Выравнивание текста */
     position: absolute; /* Абсолютное позиционирование */
-    top: 400px; /* Регулируйте значение для перемещения вниз */
+    top: 310px; /* Регулируйте значение для перемещения вниз */
     left: 350px; /* Регулируйте значение для перемещения вправо */
     background-color: #f9f9f9; /* Фоновый цвет для лучшего контраста */
     border: 1px solid #000000;
     max-width: 330px; /* Максимальная ширина блока текста */
     word-wrap: break-word; /* Перенос слов, если они выходят за пределы блока */
+}
+
+.hero-content {
+    position: relative;
+    max-width: 800px; /* Ограничение ширины текста */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 1); /* Полупрозрачный белый фон для лучшей читаемости */
+    border: 1px solid #000000;
+    text-align: left;
+}
+
+.hero-content h1, .hero-content h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.hero-content ul {
+    color: #555;
+    line-height: 1.6;
+    padding-left: 20px;
+}
+
+.hero-content ul li {
+    margin-bottom: 10px;
 }
