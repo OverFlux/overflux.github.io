@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OverFlux</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">OverFlux</div>
+        <nav>
+            <ul>
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="tab-content active">
+        <h1>Welcome to OverFlux</h1>
+        <p>This is the home page of the OverFlux website. Explore and enjoy!</p>
+    </section>
+
+    <section id="about" class="tab-content">
+        <h1>About Us</h1>
+        <p>Learn more about OverFlux and our mission to bring the best experience to our users.</p>
+    </section>
+
+    <section id="contact" class="tab-content">
+        <h1>Contact Us</h1>
+        <p>Get in touch with us through our contact form or social media channels.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 OverFlux. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const tabs = document.querySelectorAll('nav ul li a');
+        const contents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                // Убираем активные классы у всех вкладок и контента
+                tabs.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+
+                // Добавляем активный класс к выбранной вкладке и соответствующему контенту
+                this.classList.add('active');
+                document.querySelector(this.getAttribute('href')).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
