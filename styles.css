@@ -1,5 +1,6 @@
 /* Основные стили */
 body, html {
+    scroll-behavior: smooth;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -14,6 +15,16 @@ body, html {
     flex-wrap: nowrap;
 }
 
+/* Область для наведения */
+.sidebar-hover-area {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 30px; /* Узкая зона, чтобы поймать наведение */
+    height: 100vh;
+    z-index: 1;
+}
+
 /* Боковая панель навигации */
 .sidebar {
     background-color: #ffffff;
@@ -24,6 +35,16 @@ body, html {
     justify-content: space-between;
     height: 100vh;
     border-right: 2px solid #e0e0e0;
+    position: fixed;
+    left: -160px; /* Скрыто за экраном */
+    top: 0;
+    transition: left 0.5s ease; /* Плавное выдвижение */
+    z-index: 2;
+}
+
+.sidebar-hover-area:hover ~ .sidebar, /* Появление sidebar при наведении */
+.sidebar:hover {
+    left: 0; /* Показываем sidebar */
 }
 
 @media (max-width: 768px) {
@@ -32,6 +53,12 @@ body, html {
         height: auto;
         border-right: none;
         border-bottom: 2px solid #e0e0e0;
+        left: -100%; /* Скрываем sidebar */
+    }
+
+    .sidebar-hover-area:hover ~ .sidebar, /* Для мобильных устройств */
+    .sidebar:hover {
+        left: 0;
     }
 
     .sidebar ul {
@@ -49,12 +76,17 @@ body, html {
 /* Логотип */
 .logo {
     font-size: 24px;
-    color: black; 
+    color: black;
     font-weight: bold;
     writing-mode: vertical-rl;
     text-orientation: upright;
     text-align: center;
     margin-bottom: 20px;
+    transition: transform 0.6s ease;
+}
+
+.logo:hover {
+    transform: rotateX(180deg);  /* Вращение и увеличение при наведении */
 }
 
 @media (max-width: 768px) {
@@ -76,15 +108,15 @@ body, html {
     text-decoration: none;
     color: #000000;
     font-size: 14px;
-    display: block; /* Для удобного кликабельного региона */
-    padding: 10px; /* Внутренние отступы */
-    transition: background-color 0.1s; /* Плавный переход для фона */
+    display: block;
+    padding: 10px;
+    transition: background-color 0.1s;
     border-radius: 15px;
     text-align: center;
 }
 
 .sidebar ul li a:hover {
-    background-color: #f0f0f0; /* Фон при наведении */
+    background-color: #f0f0f0;
     border-radius: 15px;
 }
 
@@ -92,7 +124,7 @@ body, html {
 .social-links {
     display: flex;
     flex-direction: column;
-    margin-top: 20px; /* Отступ сверху от списка навигации */
+    margin-top: 20px;
 }
 
 .social-links a {
@@ -100,11 +132,17 @@ body, html {
     color: #000000;
     margin: 10px 0;
     font-size: 20px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: scale(1.3); /* Увеличение размера */
+    color: #B07AD2; /* Изменение цвета */
 }
 
 /* Стили для активной ссылки */
 .sidebar ul li a.active {
-    background-color: #f0f0f0; /* Цвет фона для активного элемента */
+    background-color: #f0f0f0;
     border-radius: 15px;
 }
 
@@ -116,51 +154,55 @@ body, html {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Фиксированная высота */
-    width: 100%; /* Фиксированная ширина */
+    height: 100vh;
+    width: 100%;
     overflow: hidden;
-    box-sizing: border-box; /* Включает padding и border в общие размеры блока */
-}
-
-@media (max-width: 768px) {
-    .hero {
-        height: auto; /* Автоматическая высота для мобильных устройств */
-        padding: 20px; /* Добавляем отступы */
-    }
-}
-
-/* Изображения в герое */
-.hero .hand-sculpture, .hero .team {
-    position: absolute;
-    max-width: 100%; /* Ограничение максимальной ширины */
-    max-height: 100%; /* Ограничение максимальной высоты */
-    width: auto;
-    height: auto;
-    transform: translate(-50%, -50%);
-    object-fit: contain; /* Изображение сохраняет свои пропорции и вписывается в блок */
     box-sizing: border-box;
 }
 
 .hero .team {
     position: absolute;
-    top: 39%;
-    left: 20%;
+    top: 50%;
+    left: 40%;
     width: auto;
     height: 100%;
     transform: translate(-50%, -50%);
     object-fit: cover; /* Изображение заполняет контейнер, сохраняя пропорции */
     border: 1px solid #000000;
+    border-radius: 15px;
 }
 
+.hero .founder-text {
+    margin-top: 20px; /* Отступ сверху */
+    margin-bottom: 20px; /* Отступ снизу */
+    padding: 10px; /* Отступы вокруг текста */
+    text-align: start; /* Выравнивание текста */
+    position: absolute; /* Абсолютное позиционирование */
+    top: 40%; /* Регулируйте значение для перемещения вниз */
+    left: 60%; /* Регулируйте значение для перемещения вправо */
+    background-color: #f9f9f9; /* Фоновый цвет для лучшего контраста */
+    border: 1px solid #000000;
+    max-width: 330px; /* Максимальная ширина блока текста */
+    word-wrap: break-word; /* Перенос слов, если они выходят за пределы блока */
+    border-radius: 15px;
+}
+
+.hero-content {
+    position: relative;
+    max-width: 650px; /* Ограничение ширины текста */
+    padding: 20px;
+    left: 5%; /* Регулируйте значение для перемещения вправо */
+    background-color: rgba(255, 255, 255, 1); /* Полупрозрачный белый фон для лучшей читаемости */
+    border: 1px solid #000000;
+    text-align: left;
+    border-radius: 15px;
+}
+
+
 @media (max-width: 768px) {
-    .hero .team {
-        position: relative;
-        top: auto;
-        left: auto;
-        width: 100%;
+    .hero {
         height: auto;
-        transform: none;
-        border: none;
+        padding: 20px;
     }
 }
 
@@ -188,91 +230,23 @@ body, html {
     border: 2px solid #000000;
     padding: 10px 20px;
     background-color: #ffffff;
-    transition: background-color 0.1s, color 0.1s; /* Плавное изменение цвета фона и текста */
+    border-radius: 15px;
+    transition: background-color 0.5s, color 0.5s;
 }
 
 .cta-button:hover {
-    background-color: #f0f0f0; /* Цвет фона при наведении */
-    color: #000000; /* Цвет текста при наведении */
+    background-color: #f0f0f0;
+    color: #000000;
 }
 
 /* Стили для секций */
 section {
     padding: 50px;
+    
 }
 
 @media (max-width: 768px) {
     section {
         padding: 20px;
     }
-}
-
-section h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-section p {
-    font-size: 16px;
-}
-
-/* Стили для текстовых блоков в герое */
-.hero .founder-text {
-    margin-top: 20px; /* Отступ сверху */
-    margin-bottom: 20px; /* Отступ снизу */
-    padding: 10px; /* Отступы вокруг текста */
-    text-align: start; /* Выравнивание текста */
-    position: absolute; /* Абсолютное позиционирование */
-    top: 310px; /* Регулируйте значение для перемещения вниз */
-    left: 350px; /* Регулируйте значение для перемещения вправо */
-    background-color: #f9f9f9; /* Фоновый цвет для лучшего контраста */
-    border: 1px solid #000000;
-    max-width: 330px; /* Максимальная ширина блока текста */
-    word-wrap: break-word; /* Перенос слов, если они выходят за пределы блока */
-}
-
-@media (max-width: 768px) {
-    .hero .founder-text {
-        position: relative;
-        top: auto;
-        left: auto;
-        max-width: 100%;
-        margin: 20px 0;
-    }
-}
-
-.hero-content {
-    position: relative;
-    max-width: 800px; /* Ограничение ширины текста */
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 1); /* Полупрозрачный белый фон для лучшей читаемости */
-    border: 1px solid #000000;
-    text-align: left;
-}
-
-@media (max-width: 768px) {
-    .hero-content {
-        max-width: 100%;
-        padding: 10px;
-    }
-}
-.hero-content h1, .hero-content h2 {
-    color: #333;
-    margin-bottom: 15px;
-}
-
-.hero-content p {
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-.hero-content ul {
-    color: #555;
-    line-height: 1.6;
-    padding-left: 20px;
-}
-
-.hero-content ul li {
-    margin-bottom: 10px;
 }
