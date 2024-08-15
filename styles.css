@@ -1,8 +1,8 @@
-
 /* Основные стили */
 body, html {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     font-family: Arial, sans-serif;
     background-color: #ffffff;
     color: #000000;
@@ -11,6 +11,7 @@ body, html {
 /* Контейнер для основной структуры */
 .container {
     display: flex;
+    flex-wrap: nowrap;
 }
 
 /* Боковая панель навигации */
@@ -25,6 +26,26 @@ body, html {
     border-right: 2px solid #e0e0e0;
 }
 
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 2px solid #e0e0e0;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .social-links {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
 /* Логотип */
 .logo {
     font-size: 24px;
@@ -32,6 +53,16 @@ body, html {
     font-weight: bold;
     writing-mode: vertical-rl;
     text-orientation: upright;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .logo {
+        writing-mode: horizontal-tb;
+        text-orientation: initial;
+        margin-bottom: 0;
+    }
 }
 
 /* Список навигации */
@@ -49,6 +80,7 @@ body, html {
     padding: 10px; /* Внутренние отступы */
     transition: background-color 0.1s; /* Плавный переход для фона */
     border-radius: 15px;
+    text-align: center;
 }
 
 .sidebar ul li a:hover {
@@ -90,6 +122,13 @@ body, html {
     box-sizing: border-box; /* Включает padding и border в общие размеры блока */
 }
 
+@media (max-width: 768px) {
+    .hero {
+        height: auto; /* Автоматическая высота для мобильных устройств */
+        padding: 20px; /* Добавляем отступы */
+    }
+}
+
 /* Изображения в герое */
 .hero .hand-sculpture, .hero .team {
     position: absolute;
@@ -113,11 +152,33 @@ body, html {
     border: 1px solid #000000;
 }
 
+@media (max-width: 768px) {
+    .hero .team {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        height: auto;
+        transform: none;
+        border: none;
+    }
+}
+
 /* Кнопка вызова действия */
 .cta {
     position: absolute;
     bottom: 20px;
     right: 20px;
+}
+
+@media (max-width: 768px) {
+    .cta {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        text-align: center;
+        margin-top: 20px;
+    }
 }
 
 .cta-button {
@@ -138,6 +199,12 @@ body, html {
 /* Стили для секций */
 section {
     padding: 50px;
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 20px;
+    }
 }
 
 section h2 {
@@ -164,6 +231,16 @@ section p {
     word-wrap: break-word; /* Перенос слов, если они выходят за пределы блока */
 }
 
+@media (max-width: 768px) {
+    .hero .founder-text {
+        position: relative;
+        top: auto;
+        left: auto;
+        max-width: 100%;
+        margin: 20px 0;
+    }
+}
+
 .hero-content {
     position: relative;
     max-width: 800px; /* Ограничение ширины текста */
@@ -173,6 +250,12 @@ section p {
     text-align: left;
 }
 
+@media (max-width: 768px) {
+    .hero-content {
+        max-width: 100%;
+        padding: 10px;
+    }
+}
 .hero-content h1, .hero-content h2 {
     color: #333;
     margin-bottom: 15px;
