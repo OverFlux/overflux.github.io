@@ -4,7 +4,7 @@ body, html {
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-    background-color: #ffffff; /* Белый фон */
+    background-color: #ffffff;
     color: #333;
     scroll-behavior: smooth;
 }
@@ -17,10 +17,10 @@ a {
 /* Навигация */
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Сместить навигацию вправо */
     align-items: center;
     padding: 20px;
-    background-color: #B07AD2; /* Фиолетовый цвет для навигации */
+    background-color: #B07AD2;
     color: white;
     position: fixed;
     width: 100%;
@@ -31,7 +31,15 @@ a {
 .logo {
     font-size: 24px;
     font-weight: bold;
-    color: #ffffff; /* Белый текст для логотипа */
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+}
+
+.logo-img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
 }
 
 .nav-links {
@@ -51,7 +59,7 @@ a {
 }
 
 .nav-links li a:hover, .nav-links li a.active {
-    background-color: #8A5AB7; /* Более тёмный фиолетовый для эффекта наведения */
+    background-color: #8A5AB7;
     border-radius: 5px;
 }
 
@@ -74,7 +82,7 @@ a {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(rgba(176, 122, 210, 0.7), rgba(247, 247, 247, 0.7)), url('\images\cto.png') center/cover no-repeat; /* Градиент фиолетового поверх изображения */
+    background: linear-gradient(rgba(176, 122, 210, 0.6), rgb(255, 255, 255)), url('images/cto.png') center/cover no-repeat;
     color: white;
     text-align: center;
 }
@@ -83,38 +91,83 @@ a {
     max-width: 600px;
     padding: 20px;
     border-radius: 10px;
-    background-color: rgba(176, 122, 210, 0.8); /* Фиолетовый фон с прозрачностью */
+    background-color: rgba(176, 122, 210, 0.8);
 }
 
 .cta-button {
     display: inline-block;
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #ffffff; /* Белая кнопка */
-    color: #B07AD2; /* Фиолетовый текст на кнопке */
+    background-color: #ffffff;
+    color: #B07AD2;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
 .cta-button:hover {
-    background-color: #f0f0f0; /* Светлый оттенок при наведении */
-    color: #8A5AB7; /* Более тёмный фиолетовый при наведении */
+    background-color: #f0f0f0;
+    color: #8A5AB7;
 }
 
-/* Секции контента */
+/* Контентные секции */
 .content-section {
     padding: 100px 20px;
     text-align: center;
-    background-color: #ffffff; /* Белый фон для секций */
+    background-color: #ffffff;
 }
 
 h2 {
     font-size: 32px;
     margin-bottom: 20px;
-    color: #B07AD2; /* Фиолетовые заголовки */
+    color: #B07AD2;
 }
 
 p {
+    font-size: 18px;
+    color: #555;
+}
+
+/* Секция команды */
+.team-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.team-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.team-btn {
+    padding: 10px 20px;
+    background-color: #B07AD2;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.team-btn:hover {
+    background-color: #8A5AB7;
+}
+
+.team-image {
+    text-align: left;
+}
+
+.team-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.team-image .founder-text {
     font-size: 18px;
     color: #555;
 }
@@ -123,7 +176,7 @@ p {
 footer {
     text-align: center;
     padding: 20px;
-    background-color: #B07AD2; /* Фиолетовый футер */
+    background-color: #B07AD2;
     color: white;
 }
 
@@ -134,7 +187,7 @@ footer {
 }
 
 .social-links a:hover {
-    color: #8A5AB7; /* Тёмно-фиолетовый при наведении на социальные ссылки */
+    color: #8A5AB7;
 }
 
 /* Адаптивность */
@@ -147,17 +200,15 @@ footer {
         display: flex;
     }
 
-    .content-section {
-        padding: 80px 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-content h1 {
-        font-size: 28px;
+    .hero-content {
+        padding: 10px;
     }
 
-    .cta-button {
-        width: 100%;
+    .team-section {
+        flex-direction: column;
+    }
+
+    .team-image {
+        text-align: center;
     }
 }

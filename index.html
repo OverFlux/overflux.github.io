@@ -5,11 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OVERFLUX</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        function toggleAboutSection() {
+            const aboutSection = document.getElementById('about-content');
+            const btn = document.getElementById('about-toggle-btn');
+            if (aboutSection.style.display === 'none' || aboutSection.style.display === '') {
+                aboutSection.style.display = 'block';
+                btn.textContent = 'Hide About';
+            } else {
+                aboutSection.style.display = 'none';
+                btn.textContent = 'Show About';
+            }
+        }
+
+        function changeImage(imageSrc, altText, newText) {
+            const imageElement = document.querySelector('.team-image img');
+            const textElement = document.querySelector('.team-image .founder-text');
+
+            imageElement.src = imageSrc;
+            imageElement.alt = altText;
+            textElement.textContent = newText;
+            imageElement.style.display = 'block';
+            textElement.style.display = 'block';
+        }
+    </script>
 </head>
 <body>
     <!-- Основная навигация -->
     <nav class="navbar">
-        <div class="logo">OVERFLUX</div>
+        <a href="#home" class="logo">
+            <img src="images/OverFlux.png" alt="OVERFLUX Logo" class="logo-img">
+            OVERFLUX
+        </a>
         <ul class="nav-links">
             <li><a href="#home" class="active">Home</a></li>
             <li><a href="#about">About</a></li>
@@ -28,29 +55,48 @@
         <div class="hero-content">
             <h1>Welcome to OVERFLUX</h1>
             <p>Your creative space for art, innovation, and collaboration.</p>
-            <a href="#whats-on" class="cta-button">Explore More</a>
+            <a href="https://github.com/OverFlux" class="cta-button">Explore More</a>
         </div>
     </section>
 
-    <!-- Основные секции -->
-    <section id="concept" class="content-section">
-        <h2>Our Concept</h2>
-        <p>At OVERFLUX, we aim to foster creativity and innovation through art and technology...</p>
+    <!-- About Us Section with Collapsible Content -->
+    <section id="about" class="content-section">
+        <h2>About Us</h2>
+        <button id="about-toggle-btn" class="cta-button" onclick="toggleAboutSection()">Show About</button>
+        <div id="about-content" style="display: none;">
+            <h2>OverFlux</h2>
+            <p>Welcome to OverFlux! We’re a small but dynamic team of developers who are passionate about technology and driven by innovation. Although our main strength is in Python, we're comfortable with a range of programming languages and tools. Our enthusiasm lies in exploring new technologies and tackling real-world problems with creative solutions.</p>
+    
+            <h2>Our Work</h2>
+            <p>At OverFlux, we tackle a variety of projects spanning web development, data science, automation, and more. Whether we're developing backend systems or crafting user interfaces, we focus on delivering top-notch, efficient solutions that truly make a difference.</p>
+    
+            <h2>Why Partner With Us?</h2>
+            <ul>
+                <li><strong>Expertise:</strong> We bring deep knowledge across different technologies and fields.</li>
+                <li><strong>Flexibility:</strong> We tailor our approach to fit your project's needs, whether it's a brief assignment or a long-term engagement.</li>
+                <li><strong>Innovation:</strong> We thrive on pushing the envelope and bringing innovative solutions to every challenge.</li>
+            </ul>
+    
+            <h2>Get in Touch!</h2>
+            <p>We’re always up for new challenges and keen to work with individuals and organizations who share our passion. If you're interested in collaborating with OverFlux, feel free to get in touch!</p>
+        </div>
     </section>
 
-    <section id="residents" class="content-section">
-        <h2>Our Residents</h2>
-        <p>Meet the incredible artists and creators that shape our community...</p>
-    </section>
-
-    <section id="whats-on" class="content-section">
-        <h2>What's On</h2>
-        <p>Discover the latest exhibitions, workshops, and events at OVERFLUX...</p>
-    </section>
-
-    <section id="visit-us" class="content-section">
-        <h2>Visit Us</h2>
-        <p>Find out how to get to our space and explore what we offer...</p>
+    <!-- Секция с интерактивными кнопками в Contacts -->
+    <section id="contacts" class="content-section">
+        <h2>Our Team</h2>
+        <div class="team-section">
+            <div class="team-buttons">
+                <button onclick="changeImage('images/founder.jpg', 'Founder Image', 'Founder: Tumanov Dmitry Mikhailovich.')" class="team-btn cta-button">Founder</button>
+                <button onclick="changeImage('images/ceo.png', 'CEO Image', 'CEO: Aldyukhov Egor Viktorovich.')" class="team-btn cta-button">CEO</button>
+                <button onclick="changeImage('images/cto.png', 'CTO Image', 'CTO: Yakushev Roman Alekseevich.')" class="team-btn cta-button">CTO</button>
+                <button onclick="changeImage('images/tester.png', 'Tester Image', 'Tester: Kopustas Antanas Alexandrovich.')" class="team-btn cta-button">Tester</button>
+            </div>
+            <div class="team-image">
+                <img src="images/founder.jpg" alt="Team Member" style="display: none;">
+                <p class="founder-text"></p>
+            </div>
+        </div>
     </section>
 
     <footer>
@@ -61,7 +107,5 @@
             <a href="#">YouTube</a>
         </div>
     </footer>
-
-    <script src="scripts.js"></script>
 </body>
 </html>
