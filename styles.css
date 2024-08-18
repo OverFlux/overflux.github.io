@@ -1,252 +1,163 @@
-/* Основные стили */
+/* Общие стили */
 body, html {
-    scroll-behavior: smooth;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
-    background-color: #ffffff;
-    color: #000000;
+    font-family: 'Roboto', sans-serif;
+    background-color: #ffffff; /* Белый фон */
+    color: #333;
+    scroll-behavior: smooth;
 }
 
-/* Контейнер для основной структуры */
-.container {
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* Навигация */
+.navbar {
     display: flex;
-    flex-wrap: nowrap;
-}
-
-/* Область для наведения */
-.sidebar-hover-area {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 30px; /* Узкая зона, чтобы поймать наведение */
-    height: 100vh;
-    z-index: 1;
-}
-
-/* Боковая панель навигации */
-.sidebar {
-    background-color: #ffffff;
-    width: 200px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    height: 100vh;
-    border-right: 2px solid #e0e0e0;
+    align-items: center;
+    padding: 20px;
+    background-color: #B07AD2; /* Фиолетовый цвет для навигации */
+    color: white;
     position: fixed;
-    left: -160px; /* Скрыто за экраном */
+    width: 100%;
     top: 0;
-    transition: left 0.5s ease; /* Плавное выдвижение */
-    z-index: 2;
+    z-index: 1000;
 }
 
-.sidebar-hover-area:hover ~ .sidebar, /* Появление sidebar при наведении */
-.sidebar:hover {
-    left: 0; /* Показываем sidebar */
-}
-
-@media (max-width: 768px) {
-    .sidebar {
-        width: 100%;
-        height: auto;
-        border-right: none;
-        border-bottom: 2px solid #e0e0e0;
-        left: -100%; /* Скрываем sidebar */
-    }
-
-    .sidebar-hover-area:hover ~ .sidebar, /* Для мобильных устройств */
-    .sidebar:hover {
-        left: 0;
-    }
-
-    .sidebar ul {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-    }
-
-    .social-links {
-        flex-direction: row;
-        justify-content: center;
-    }
-}
-
-/* Логотип */
 .logo {
     font-size: 24px;
-    color: black;
     font-weight: bold;
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    text-align: center;
-    margin-bottom: 20px;
-    transition: transform 0.6s ease;
+    color: #ffffff; /* Белый текст для логотипа */
 }
 
-.logo:hover {
-    transform: rotateX(180deg);  /* Вращение и увеличение при наведении */
+.nav-links {
+    display: flex;
+    gap: 20px;
 }
 
-@media (max-width: 768px) {
-    .logo {
-        writing-mode: horizontal-tb;
-        text-orientation: initial;
-        margin-bottom: 0;
-    }
-}
-
-/* Список навигации */
-.sidebar ul {
+.nav-links li {
     list-style: none;
-    padding: 0;
 }
 
-/* Ссылки в навигации */
-.sidebar ul li a {
-    text-decoration: none;
-    color: #000000;
-    font-size: 14px;
-    display: block;
-    padding: 10px;
-    transition: background-color 0.1s;
-    border-radius: 15px;
-    text-align: center;
+.nav-links li a {
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
 }
 
-.sidebar ul li a:hover {
-    background-color: #f0f0f0;
-    border-radius: 15px;
+.nav-links li a:hover, .nav-links li a.active {
+    background-color: #8A5AB7; /* Более тёмный фиолетовый для эффекта наведения */
+    border-radius: 5px;
 }
 
-/* Социальные ссылки */
-.social-links {
-    display: flex;
+.burger-menu {
+    display: none;
     flex-direction: column;
-    margin-top: 20px;
+    gap: 5px;
+    cursor: pointer;
 }
 
-.social-links a {
-    text-decoration: none;
-    color: #000000;
-    margin: 10px 0;
-    font-size: 20px;
-    transition: transform 0.3s ease, color 0.3s ease;
+.burger-menu span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
 }
 
-.social-links a:hover {
-    transform: scale(1.3); /* Увеличение размера */
-    color: #B07AD2; /* Изменение цвета */
-}
-
-/* Стили для активной ссылки */
-.sidebar ul li a.active {
-    background-color: #f0f0f0;
-    border-radius: 15px;
-}
-
-/* Герой секция */
+/* Герой-секция */
 .hero {
-    position: relative;
-    background-color: #B07AD2;
-    flex-grow: 1;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     height: 100vh;
-    width: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-}
-
-.hero .team {
-    position: absolute;
-    top: 50%;
-    left: 40%;
-    width: auto;
-    height: 100%;
-    transform: translate(-50%, -50%);
-    object-fit: cover; /* Изображение заполняет контейнер, сохраняя пропорции */
-    border: 1px solid #000000;
-    border-radius: 15px;
-}
-
-.hero .founder-text {
-    margin-top: 20px; /* Отступ сверху */
-    margin-bottom: 20px; /* Отступ снизу */
-    padding: 10px; /* Отступы вокруг текста */
-    text-align: start; /* Выравнивание текста */
-    position: absolute; /* Абсолютное позиционирование */
-    top: 40%; /* Регулируйте значение для перемещения вниз */
-    left: 60%; /* Регулируйте значение для перемещения вправо */
-    background-color: #f9f9f9; /* Фоновый цвет для лучшего контраста */
-    border: 1px solid #000000;
-    max-width: 330px; /* Максимальная ширина блока текста */
-    word-wrap: break-word; /* Перенос слов, если они выходят за пределы блока */
-    border-radius: 15px;
+    background: linear-gradient(rgba(176, 122, 210, 0.7), rgba(247, 247, 247, 0.7)), url('\images\cto.png') center/cover no-repeat; /* Градиент фиолетового поверх изображения */
+    color: white;
+    text-align: center;
 }
 
 .hero-content {
-    position: relative;
-    max-width: 650px; /* Ограничение ширины текста */
+    max-width: 600px;
     padding: 20px;
-    left: 5%; /* Регулируйте значение для перемещения вправо */
-    background-color: rgba(255, 255, 255, 1); /* Полупрозрачный белый фон для лучшей читаемости */
-    border: 1px solid #000000;
-    text-align: left;
-    border-radius: 15px;
-}
-
-
-@media (max-width: 768px) {
-    .hero {
-        height: auto;
-        padding: 20px;
-    }
-}
-
-/* Кнопка вызова действия */
-.cta {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-}
-
-@media (max-width: 768px) {
-    .cta {
-        position: relative;
-        bottom: auto;
-        right: auto;
-        text-align: center;
-        margin-top: 20px;
-    }
+    border-radius: 10px;
+    background-color: rgba(176, 122, 210, 0.8); /* Фиолетовый фон с прозрачностью */
 }
 
 .cta-button {
-    text-decoration: none;
-    color: #000000;
-    font-size: 16px;
-    border: 2px solid #000000;
+    display: inline-block;
+    margin-top: 20px;
     padding: 10px 20px;
-    background-color: #ffffff;
-    border-radius: 15px;
-    transition: background-color 0.5s, color 0.5s;
+    background-color: #ffffff; /* Белая кнопка */
+    color: #B07AD2; /* Фиолетовый текст на кнопке */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 .cta-button:hover {
-    background-color: #f0f0f0;
-    color: #000000;
+    background-color: #f0f0f0; /* Светлый оттенок при наведении */
+    color: #8A5AB7; /* Более тёмный фиолетовый при наведении */
 }
 
-/* Стили для секций */
-section {
-    padding: 50px;
-    
+/* Секции контента */
+.content-section {
+    padding: 100px 20px;
+    text-align: center;
+    background-color: #ffffff; /* Белый фон для секций */
 }
 
+h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #B07AD2; /* Фиолетовые заголовки */
+}
+
+p {
+    font-size: 18px;
+    color: #555;
+}
+
+/* Футер */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #B07AD2; /* Фиолетовый футер */
+    color: white;
+}
+
+.social-links a {
+    margin: 0 10px;
+    color: white;
+    font-size: 18px;
+}
+
+.social-links a:hover {
+    color: #8A5AB7; /* Тёмно-фиолетовый при наведении на социальные ссылки */
+}
+
+/* Адаптивность */
 @media (max-width: 768px) {
-    section {
-        padding: 20px;
+    .nav-links {
+        display: none;
+    }
+
+    .burger-menu {
+        display: flex;
+    }
+
+    .content-section {
+        padding: 80px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 28px;
+    }
+
+    .cta-button {
+        width: 100%;
     }
 }
