@@ -1,0 +1,81 @@
+{
+  "name": "OverFlux - Innovation & Technology",
+  "short_name": "OverFlux",
+  "description": "Your creative space for art, innovation, and collaboration. A dynamic team of developers passionate about technology and innovation.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6366f1",
+  "orientation": "portrait-primary",
+  "scope": "./",
+  "lang": "en",
+  "categories": ["business", "technology", "productivity"],
+  "screenshots": [
+    {
+      "src": "images/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "OverFlux Desktop View"
+    },
+    {
+      "src": "images/screenshot-narrow.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "OverFlux Mobile View"
+    }
+  ],
+  "icons": [
+    {
+      "src": "materials/overflux_logo_lowres.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "materials/overflux_logo.ico",
+      "sizes": "512x512",
+      "type": "image/x-icon",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "About Us",
+      "short_name": "About",
+      "description": "Learn more about OverFlux team",
+      "url": "/#about",
+      "icons": [
+        {
+          "src": "materials/overflux_logo_lowres.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Portfolio",
+      "short_name": "Work",
+      "description": "View our portfolio",
+      "url": "/#portfolio",
+      "icons": [
+        {
+          "src": "materials/overflux_logo_lowres.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Contact",
+      "short_name": "Team",
+      "description": "Meet our team",
+      "url": "/#contacts",
+      "icons": [
+        {
+          "src": "materials/overflux_logo_lowres.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}

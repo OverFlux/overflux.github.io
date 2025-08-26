@@ -3,81 +3,464 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OVERFLUX</title>
-    <script src="scripts/scripts.js" defer></script>
+    <meta name="description" content="OverFlux - Your creative space for art, innovation, and collaboration. A dynamic team of developers passionate about technology and innovation.">
+    <meta name="keywords" content="OverFlux, development, innovation, technology, web development, data science, automation">
+    <meta name="author" content="OverFlux Team">
+    <meta name="theme-color" content="#6366f1">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="OVERFLUX - Innovation & Technology">
+    <meta property="og:description" content="Your creative space for art, innovation, and collaboration.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://overflux.github.io">
+    <meta property="og:image" content="materials/overflux_logo_lowres.png">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="OVERFLUX - Innovation & Technology">
+    <meta name="twitter:description" content="Your creative space for art, innovation, and collaboration.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="materials/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="materials/overflux_logo_lowres.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <title>OVERFLUX - Innovation & Technology</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="styles/styles.css">
+    
+    <!-- Scripts -->
+    <script src="scripts/scripts.js" defer></script>
 </head>
 <body>
-    <!-- Основная навигация -->
-    <nav class="navbar">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+    
+    <!-- Theme toggle button -->
+    <button class="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme">
+        <span class="theme-toggle-icon">🌙</span>
+    </button>
+    
+    <!-- Header with navigation -->
+    <header class="header">
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
+            <div class="container">
+                <a href="#home" class="logo" aria-label="OverFlux home">
+                    <img src="materials/overflux_logo_lowres.png" alt="OVERFLUX Logo" class="logo-img" width="40" height="40">
+                    <span class="logo-text">OVERFLUX</span>
+                </a>
+                
+                <!-- Mobile menu button -->
+                <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                </button>
+                
+                <ul class="nav-links" role="menubar">
+                    <li role="none"><a href="#home" role="menuitem" class="nav-link active" data-section="home">Home</a></li>
+                    <li role="none"><a href="#about" role="menuitem" class="nav-link" data-section="about">About</a></li>
+                    <li role="none"><a href="#portfolio" role="menuitem" class="nav-link" data-section="portfolio">Portfolio</a></li>
+                    <li role="none"><a href="#contacts" role="menuitem" class="nav-link" data-section="contacts">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main content -->
+    <main id="main">
+        <!-- Hero section -->
+        <section id="home" class="hero-section" aria-labelledby="hero-title">
+            <div class="hero-background">
+                <div class="hero-particles"></div>
+            </div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 id="hero-title" class="hero-title">
+                        <span class="hero-title-line">Welcome to</span>
+                        <span class="hero-title-line hero-title-highlight">OVERFLUX</span>
+                    </h1>
+                    <p class="hero-description">
+                        Your creative space for art, innovation, and collaboration.
+                        <br>
+                        <span class="hero-subtitle">Building the future, one project at a time.</span>
+                    </p>
+                    <div class="hero-actions">
+                        <a href="https://github.com/OverFlux" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                            <span>Explore GitHub</span>
+                            <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <a href="#about" class="btn btn-secondary" data-section="about">
+                            <span>Learn More</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number" data-target="50">0</span>
+                        <span class="stat-label">Projects</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="4">0</span>
+                        <span class="stat-label">Team Members</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="100">0</span>
+                        <span class="stat-label">% Satisfaction</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About section -->
+        <section id="about" class="section section-about hidden" aria-labelledby="about-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="about-title" class="section-title">About OverFlux</h2>
+                    <p class="section-subtitle">Innovation meets passion in everything we do</p>
+                </header>
+                
+                <div class="about-content">
+                    <div class="about-intro">
+                        <p class="about-description">
+                            Welcome to OverFlux! We're a small but dynamic team of developers who are passionate about technology and driven by innovation. Our mission is to create cutting-edge solutions that push the boundaries of what's possible.
+                        </p>
+                    </div>
+                    
+                    <div class="about-grid">
+                        <article class="about-card" data-aos="fade-up">
+                            <div class="about-card-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="about-card-title">Our Work</h3>
+                            <p class="about-card-description">
+                                At OverFlux, we tackle a variety of projects spanning web development, data science, automation, and cutting-edge technologies.
+                            </p>
+                        </article>
+                        
+                        <article class="about-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="about-card-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <h3 class="about-card-title">Expertise</h3>
+                            <p class="about-card-description">
+                                We bring deep knowledge across different technologies and fields, ensuring top-quality solutions for every project.
+                            </p>
+                        </article>
+                        
+                        <article class="about-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="about-card-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="about-card-title">Innovation</h3>
+                            <p class="about-card-description">
+                                We thrive on bringing innovative solutions to every challenge, always staying ahead of industry trends.
+                            </p>
+                        </article>
+                        
+                        <article class="about-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="about-card-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M12 18V22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M4.93 4.93L7.76 7.76" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M16.24 16.24L19.07 19.07" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M2 12H6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M18 12H22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M4.93 19.07L7.76 16.24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M16.24 7.76L19.07 4.93" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="about-card-title">Flexibility</h3>
+                            <p class="about-card-description">
+                                We tailor our approach to fit your project's unique needs, adapting to any challenge or requirement.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio section -->
+        <section id="portfolio" class="section section-portfolio hidden" aria-labelledby="portfolio-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="portfolio-title" class="section-title">Our Portfolio</h2>
+                    <p class="section-subtitle">Showcasing our expertise and creativity through innovative projects</p>
+                </header>
+                
+                <div class="portfolio-content">
+                    <div class="portfolio-filters">
+                        <button class="filter-btn active" data-filter="all">All Projects</button>
+                        <button class="filter-btn" data-filter="web">Web Development</button>
+                        <button class="filter-btn" data-filter="data">Data Science</button>
+                        <button class="filter-btn" data-filter="automation">Automation</button>
+                    </div>
+                    
+                    <div class="portfolio-grid">
+                        <article class="portfolio-item" data-category="web" data-aos="fade-up">
+                            <div class="portfolio-item-image">
+                                <img src="images/highres_bg_image.jpg" alt="Web Development Project" loading="lazy">
+                                <div class="portfolio-item-overlay">
+                                    <div class="portfolio-item-actions">
+                                        <button class="portfolio-btn" aria-label="View project details">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1 12S5 4 12 4S23 12 23 12S19 20 12 20S1 12 1 12Z" stroke="currentColor" stroke-width="2"/>
+                                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                                            </svg>
+                                        </button>
+                                        <a href="#" class="portfolio-btn" aria-label="Open project" target="_blank">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portfolio-item-content">
+                                <h3 class="portfolio-item-title">Modern Web Application</h3>
+                                <p class="portfolio-item-description">A cutting-edge web application built with React and Node.js</p>
+                                <div class="portfolio-item-tags">
+                                    <span class="tag">React</span>
+                                    <span class="tag">Node.js</span>
+                                    <span class="tag">MongoDB</span>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        <article class="portfolio-item" data-category="data" data-aos="fade-up" data-aos-delay="100">
+                            <div class="portfolio-item-image">
+                                <img src="images/highres_bg_image.jpg" alt="Data Science Project" loading="lazy">
+                                <div class="portfolio-item-overlay">
+                                    <div class="portfolio-item-actions">
+                                        <button class="portfolio-btn" aria-label="View project details">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1 12S5 4 12 4S23 12 23 12S19 20 12 20S1 12 1 12Z" stroke="currentColor" stroke-width="2"/>
+                                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                                            </svg>
+                                        </button>
+                                        <a href="#" class="portfolio-btn" aria-label="Open project" target="_blank">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portfolio-item-content">
+                                <h3 class="portfolio-item-title">Data Analytics Platform</h3>
+                                <p class="portfolio-item-description">Advanced analytics platform for business intelligence</p>
+                                <div class="portfolio-item-tags">
+                                    <span class="tag">Python</span>
+                                    <span class="tag">TensorFlow</span>
+                                    <span class="tag">PostgreSQL</span>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        <article class="portfolio-item" data-category="automation" data-aos="fade-up" data-aos-delay="200">
+                            <div class="portfolio-item-image">
+                                <img src="images/highres_bg_image.jpg" alt="Automation Project" loading="lazy">
+                                <div class="portfolio-item-overlay">
+                                    <div class="portfolio-item-actions">
+                                        <button class="portfolio-btn" aria-label="View project details">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1 12S5 4 12 4S23 12 23 12S19 20 12 20S1 12 1 12Z" stroke="currentColor" stroke-width="2"/>
+                                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                                            </svg>
+                                        </button>
+                                        <a href="#" class="portfolio-btn" aria-label="Open project" target="_blank">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portfolio-item-content">
+                                <h3 class="portfolio-item-title">Process Automation Suite</h3>
+                                <p class="portfolio-item-description">Intelligent automation tools for workflow optimization</p>
+                                <div class="portfolio-item-tags">
+                                    <span class="tag">Python</span>
+                                    <span class="tag">Docker</span>
+                                    <span class="tag">API</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact section -->
+        <section id="contacts" class="section section-contact hidden" aria-labelledby="contact-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="contact-title" class="section-title">Meet Our Team</h2>
+                    <p class="section-subtitle">The passionate individuals behind OverFlux innovation</p>
+                </header>
+                
+                <div class="contact-content">
+                    <div class="team-navigation">
+                        <button class="team-nav-btn active" data-member="Founder" aria-label="View Founder profile">
+                            <span class="team-nav-title">Founder</span>
+                            <span class="team-nav-subtitle">Dmitry Tumanov</span>
+                        </button>
+                        <button class="team-nav-btn" data-member="CEO" aria-label="View CEO profile">
+                            <span class="team-nav-title">CEO</span>
+                            <span class="team-nav-subtitle">Egor Aldyukhov</span>
+                        </button>
+                        <button class="team-nav-btn" data-member="CTO" aria-label="View CTO profile">
+                            <span class="team-nav-title">CTO</span>
+                            <span class="team-nav-subtitle">Roman Yakushev</span>
+                        </button>
+                        <button class="team-nav-btn" data-member="Tester" aria-label="View Tester profile">
+                            <span class="team-nav-title">Tester</span>
+                            <span class="team-nav-subtitle">Antanas Kopustas</span>
+                        </button>
+                    </div>
+                    
+                    <div class="team-display">
+                        <div class="team-member-card">
+                            <div class="team-member-image">
+                                <img id="member-photo" src="images/selfie_founder.jpg" alt="Team Member" loading="lazy">
+                                <div class="team-member-overlay"></div>
+                            </div>
+                            <div class="team-member-info">
+                                <h3 id="member-name" class="team-member-name">Dmitry Tumanov</h3>
+                                <p id="member-role" class="team-member-role">Founder</p>
+                                <p id="member-description" class="team-member-description">Founder: Tumanov Dmitry Mikhailovich.</p>
+                                <div class="team-member-social">
+                                    <a href="#" class="social-link" aria-label="LinkedIn profile" target="_blank">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M16 8A6 6 0 0 1 22 14V21H18V14A2 2 0 0 0 14 14V21H10V9H14V11A6 6 0 0 1 16 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="2"/>
+                                            <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2"/>
+                                        </svg>
+                                    </a>
+                                    <a href="#" class="social-link" aria-label="GitHub profile" target="_blank">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9 19C4 20.5 4 16.5 2 16M22 16V19A2 2 0 0 1 20 21H16A2 2 0 0 1 14 19V17.5A2 2 0 0 0 12 15.5A2 2 0 0 0 10 17.5V19A2 2 0 0 1 8 21H4A2 2 0 0 1 2 19V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M9 9V7A4 4 0 0 1 17 7V9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
+                                    <a href="#" class="social-link" aria-label="Email contact" target="_blank">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2"/>
+                                            <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
         <div class="container">
-            <a href="#home" onclick="showSection('home')" class="logo">
-                <img src="materials/overflux_logo_lowres.png" alt="OVERFLUX Logo" class="logo-img">
-                <span>OVERFLUX</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#home" onclick="showSection('home')">Home</a></li>
-                <li><a href="#about" onclick="showSection('about')">About</a></li>
-                <li><a href="#portfolio" onclick="showSection('portfolio')">Portfolio</a></li>
-                <li><a href="#contacts" onclick="showSection('contacts')">Contacts</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Главная секция -->
-    <section id="home" class="section">
-        <div class="container text-center">
-            <h1>Welcome to OVERFLUX</h1>
-            <p>Your creative space for art, innovation, and collaboration.</p>
-            <a href="https://github.com/OverFlux" class="cta">Explore More at our GitHub</a>
-        </div>
-    </section>
-
-    <!-- About Us Section -->
-    <section id="about" class="section hidden">
-        <div class="container text-center">
-            <h2>About Us</h2>
-            <p>Welcome to OverFlux! We’re a small but dynamic team of developers who are passionate about technology and driven by innovation.</p>
-            <h3>Our Work</h3>
-            <p>At OverFlux, we tackle a variety of projects spanning web development, data science, automation, and more.</p>
-            <h3>Why Partner With Us?</h3>
-            <ul>
-                <li><strong>Expertise:</strong> We bring deep knowledge across different technologies and fields.</li>
-                <li><strong>Flexibility:</strong> We tailor our approach to fit your project's needs.</li>
-                <li><strong>Innovation:</strong> We thrive on bringing innovative solutions to every challenge.</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="section hidden">
-        <div class="container text-center">
-            <h2>Our Portfolio</h2>
-            <p>Take a look at some of our recent projects that showcase our expertise and creativity.</p>
-        </div>
-    </section>
-
-    <!-- Contacts Section -->
-    <section id="contacts" class="section hidden">
-        <div class="container text-center">
-            <h2>Our Team</h2>
-            <div class="team-grid">
-                <button onclick="changeContactsImage('Founder')" class="team-btn">Founder</button>
-                <button onclick="changeContactsImage('CEO')" class="team-btn">CEO</button>
-                <button onclick="changeContactsImage('CTO')" class="team-btn">CTO</button>
-                <button onclick="changeContactsImage('Tester')" class="team-btn">Tester</button>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="materials/overflux_logo_lowres.png" alt="OVERFLUX Logo" class="footer-logo" width="32" height="32">
+                    <span class="footer-brand-text">OVERFLUX</span>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4 class="footer-title">Company</h4>
+                        <ul class="footer-list">
+                            <li><a href="#about" data-section="about">About Us</a></li>
+                            <li><a href="#portfolio" data-section="portfolio">Portfolio</a></li>
+                            <li><a href="#contacts" data-section="contacts">Team</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4 class="footer-title">Connect</h4>
+                        <ul class="footer-list">
+                            <li><a href="https://github.com/OverFlux" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                            <li><a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                            <li><a href="#" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="team-display">
-                <img id="selfie" src="images/selfie_founder.jpg" alt="Team Member" class="hidden">
-                <p id="selfie__description"></p>
+            
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2025 OVERFLUX. All rights reserved.</p>
+                <div class="footer-meta">
+                    <span class="footer-meta-item">Made with ❤️ by OverFlux Team</span>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container text-center">
-            <p>&copy; 2024 OVERFLUX. All rights reserved.</p>
         </div>
     </footer>
+    
+    <!-- Back to top button -->
+    <button class="back-to-top" aria-label="Back to top" title="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 19V5M5 12L12 5L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+    
+    <!-- PWA Service Worker Registration -->
+    <script>
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', async () => {
+                try {
+                    const registration = await navigator.serviceWorker.register('/sw.js', {
+                        scope: '/'
+                    });
+                    console.log('Service Worker registered successfully:', registration.scope);
+                    
+                    // Check for updates
+                    registration.addEventListener('updatefound', () => {
+                        const newWorker = registration.installing;
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                if (confirm('New version available! Reload to update?')) {
+                                    window.location.reload();
+                                }
+                            }
+                        });
+                    });
+                } catch (error) {
+                    console.log('Service Worker registration failed:', error);
+                }
+            });
+        }
+        
+        // PWA Install prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            console.log('PWA install prompt available');
+        });
+    </script>
 </body>
 </html>
