@@ -1,0 +1,422 @@
+/* ===== CARD COMPONENTS ===== */
+
+/* Glassmorphism Cards */
+.overflux-glass-card {
+  position: relative;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 
+    0 8px 32px rgba(31, 38, 135, 0.37),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.overflux-glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.8s ease;
+}
+
+.overflux-glass-card:hover::before {
+  left: 100%;
+}
+
+.overflux-glass-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 20px 60px rgba(31, 38, 135, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.glass-card-glow {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff, #06ffa5);
+  border-radius: 22px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: glow-rotate 4s linear infinite;
+}
+
+.overflux-glass-card:hover .glass-card-glow {
+  opacity: 0.6;
+}
+
+@keyframes glow-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Gradient Cards */
+.overflux-gradient-card {
+  position: relative;
+  background: var(--card-gradient, linear-gradient(135deg, #667eea 0%, #764ba2 100%));
+  border-radius: 20px;
+  padding: 2rem;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.gradient-card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  filter: blur(1px);
+  z-index: -1;
+}
+
+.gradient-card-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+
+.gradient-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.gradient-card-text {
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.gradient-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.gradient-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.8s ease;
+}
+
+.overflux-gradient-card:hover .gradient-overlay {
+  transform: translateX(100%);
+}
+
+.overflux-gradient-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* Floating Cards */
+.overflux-floating-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  animation: gentle-float 4s ease-in-out infinite;
+}
+
+.floating-card-shadow {
+  position: absolute;
+  bottom: -20px;
+  left: 10%;
+  width: 80%;
+  height: 20px;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.2), transparent);
+  filter: blur(10px);
+  transition: all 0.6s ease;
+}
+
+.overflux-floating-card:hover {
+  transform: translateY(-20px) rotateX(5deg);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+}
+
+.overflux-floating-card:hover .floating-card-shadow {
+  transform: scale(1.3);
+  opacity: 0.7;
+}
+
+.elevation-low {
+  animation-duration: 6s;
+}
+
+.elevation-medium {
+  animation-duration: 4s;
+}
+
+.elevation-high {
+  animation-duration: 3s;
+}
+
+.floating-card-content {
+  position: relative;
+  z-index: 2;
+}
+
+.floating-card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.floating-card-text {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2rem;
+}
+
+.floating-btn {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  border: none;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.floating-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.floating-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.float-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: float-drift 8s ease-in-out infinite;
+}
+
+.particle-1 {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.particle-2 {
+  top: 60%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.particle-3 {
+  bottom: 30%;
+  left: 70%;
+  animation-delay: 4s;
+}
+
+@keyframes float-drift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translate(10px, -10px) scale(1.2);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-5px, -20px) scale(0.8);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translate(-10px, -5px) scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes gentle-float {
+  0%, 100% {
+    transform: translateY(0px) rotateX(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotateX(2deg);
+  }
+}
+
+/* Neon Cards */
+.overflux-neon-card {
+  position: relative;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid var(--neon-color, #00ffff);
+  border-radius: 15px;
+  padding: 2rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 0 20px var(--neon-color, #00ffff),
+    inset 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+.overflux-neon-card:hover {
+  transform: scale(1.05);
+  box-shadow: 
+    0 0 40px var(--neon-color, #00ffff),
+    0 0 80px var(--neon-color, #00ffff),
+    inset 0 0 30px rgba(0, 255, 255, 0.2);
+}
+
+.neon-card-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid var(--neon-color, #00ffff);
+  border-radius: 15px;
+  box-shadow: inset 0 0 20px var(--neon-color, #00ffff);
+  animation: neon-pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes neon-pulse {
+  0% { box-shadow: inset 0 0 20px var(--neon-color, #00ffff); }
+  100% { box-shadow: inset 0 0 40px var(--neon-color, #00ffff); }
+}
+
+.neon-title {
+  color: var(--neon-color, #00ffff);
+  text-shadow: 0 0 10px var(--neon-color, #00ffff);
+  font-family: 'Orbitron', monospace;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.neon-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.neon-particles::before,
+.neon-particles::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--neon-color, #00ffff);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--neon-color, #00ffff);
+  animation: neon-float 3s ease-in-out infinite;
+}
+
+.neon-particles::before {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.neon-particles::after {
+  top: 60%;
+  right: 15%;
+  animation-delay: 1.5s;
+}
+
+@keyframes neon-float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-20px) scale(1.2); }
+}
+
+/* Hologram Cards */
+.overflux-hologram-card {
+  position: relative;
+  background: 
+    linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%),
+    radial-gradient(circle at 50% 0%, rgba(0, 255, 255, 0.2) 0%, transparent 50%);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 1.5rem;
+  overflow: hidden;
+  font-family: 'Courier New', monospace;
+  color: #00ffff;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 0 30px rgba(0, 255, 255, 0.3),
+    inset 0 1px 0 rgba(0, 255, 255, 0.2);
+}
+
+.hologram-scanner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00ffff, transparent);
+  animation: hologram-scan 2s ease-in-out infinite;
+}
+
+@keyframes hologram-scan {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(200px); }
+}
+
+.hologram-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+  animation: grid-shift 4s ease-in-out infinite;
+}
+
+@keyframes grid-shift {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(10px, 10px); }
+}

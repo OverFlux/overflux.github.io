@@ -1,0 +1,55 @@
+# top-level EditorConfig file
+root = true
+
+# Defaults
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# JSON / YAML (2 spaces)
+[*.{json,jsonc,yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# TypeScript / JavaScript
+[*.{ts,tsx,js,jsx,cjs,mjs}]
+indent_style = space
+indent_size = 2
+
+# HTML / CSS / SCSS
+[*.{html,css,scss}]
+indent_style = space
+indent_size = 2
+
+# Python (PEP 8)
+[*.py]
+indent_style = space
+indent_size = 4
+max_line_length = off  # linter takes control
+
+# Markdown
+[*.md]
+trim_trailing_whitespace = false
+max_line_length = off
+
+# Makefile
+[Makefile]
+indent_style = tab
+
+# Shell / Docker
+[*.{sh,bash}]
+indent_style = space
+indent_size = 2
+
+[Dockerfile]
+indent_style = space
+indent_size = 2
+
+# Editor/CI configs
+[*.{editorconfig,prettierrc,eslintrc,stylelintrc}]
+indent_style = space
+indent_size = 2

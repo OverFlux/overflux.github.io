@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OverFlux Components Demo</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/cards.css">
+    <link rel="stylesheet" href="styles/buttons.css">
+    <link rel="stylesheet" href="styles/navigation.css">
+    <link rel="stylesheet" href="styles/forms.css">
+    <link rel="stylesheet" href="styles/loaders.css">
+    <link rel="stylesheet" href="styles/effects.css">
+    <link rel="stylesheet" href="styles/killer-features.css">
+    <style>
+        body {
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .demo-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .demo-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff, #06ffa5);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; font-size: 3rem; margin-bottom: 3rem;">🎨 OverFlux Components Demo</h1>
+
+    <!-- Cards Demo -->
+    <div class="demo-section">
+        <h2>Card Components</h2>
+        <div class="demo-grid" id="cards-demo"></div>
+    </div>
+
+    <!-- Buttons Demo -->
+    <div class="demo-section">
+        <h2>Button Components</h2>
+        <div class="demo-buttons" id="buttons-demo"></div>
+    </div>
+
+    <!-- Navigation Demo -->
+    <div class="demo-section">
+        <h2>Navigation Components</h2>
+        <div id="nav-demo"></div>
+    </div>
+
+    <!-- Forms Demo -->
+    <div class="demo-section">
+        <h2>Form Components</h2>
+        <div class="demo-grid" id="forms-demo"></div>
+    </div>
+
+    <!-- Loaders Demo -->
+    <div class="demo-section">
+        <h2>Loader Components</h2>
+        <div class="demo-grid" id="loaders-demo"></div>
+    </div>
+
+    <!-- Effects Demo -->
+    <div class="demo-section">
+        <h2>Effect Components</h2>
+        <div class="demo-grid" id="effects-demo"></div>
+    </div>
+
+    <script src="scripts/icon-library.js"></script>
+    <script src="scripts/component-library.js"></script>
+    <script>
+        // Initialize component library
+        const components = new OverFluxComponentLibrary();
+
+        // Render Card Components
+        const cardsContainer = document.getElementById('cards-demo');
+        cardsContainer.innerHTML = `
+            ${components.getComponent('cards', 'gradient', { title: 'Gradient Magic', content: 'Beautiful gradient backgrounds with smooth animations' })}
+            ${components.getComponent('cards', 'floating', { title: 'Floating Wonder', content: '3D floating effects that respond to hover' })}
+            ${components.getComponent('cards', 'neon', { title: 'Neon Dreams', content: 'Cyberpunk-inspired neon glow effects' })}
+            ${components.getComponent('cards', 'glassmorphism', { title: 'Glass Fusion', content: 'Modern glassmorphism with blur effects' })}
+        `;
+
+        // Render Button Components
+        const buttonsContainer = document.getElementById('buttons-demo');
+        buttonsContainer.innerHTML = `
+            ${components.getComponent('buttons', 'neon', { text: 'Neon Power', color: '#ff0080' })}
+            ${components.getComponent('buttons', 'morphing', { text: 'Morphing Magic', colors: ['#ff006e', '#8338ec', '#3a86ff'] })}
+            ${components.getComponent('buttons', 'magnetic', { text: 'Magnetic Force' })}
+            ${components.getComponent('buttons', 'liquid', { text: 'Liquid Flow' })}
+            ${components.getComponent('buttons', 'particle', { text: 'Particle Burst' })}
+        `;
+
+        // Render Navigation Components
+        const navContainer = document.getElementById('nav-demo');
+        navContainer.innerHTML = `
+            ${components.getComponent('navigation', 'morphing', { items: ['Home', 'About', 'Portfolio', 'Contact'] })}
+            <br><br>
+            ${components.getComponent('navigation', 'particles', { items: ['Projects', 'Services', 'Blog', 'Contact'] })}
+        `;
+
+        // Render Form Components
+        const formsContainer = document.getElementById('forms-demo');
+        formsContainer.innerHTML = `
+            ${components.getComponent('forms', 'neon', { title: 'Neon Contact', neonColor: '#00ffff' })}
+            ${components.getComponent('forms', 'glassmorphism', { title: 'Glass Contact' })}
+        `;
+
+        // Render Loader Components
+        const loadersContainer = document.getElementById('loaders-demo');
+        loadersContainer.innerHTML = `
+            ${components.getComponent('loaders', 'morphing', { color: '#ff006e' })}
+            ${components.getComponent('loaders', 'particle', { particleCount: 15, color: '#00ffff' })}
+            ${components.getComponent('loaders', 'liquid', {})}
+            ${components.getComponent('loaders', 'hologram', { text: 'Processing...' })}
+        `;
+
+        // Render Effect Components
+        const effectsContainer = document.getElementById('effects-demo');
+        effectsContainer.innerHTML = `
+            ${components.getComponent('effects', 'glitch', { text: 'GLITCH', color: '#ff0040' })}
+            ${components.getComponent('effects', 'particles', { count: 30, type: 'floating' })}
+            ${components.getComponent('effects', 'waves', { waves: 4, direction: 'horizontal' })}
+        `;
+
+        // Add event listeners for interactive components
+        document.addEventListener('DOMContentLoaded', () => {
+            // Bind component events
+            const containers = [cardsContainer, buttonsContainer, navContainer, formsContainer, loadersContainer, effectsContainer];
+            containers.forEach(container => {
+                components.bindComponentEvents(container, 'buttons', 'magnetic');
+                components.bindComponentEvents(container, 'buttons', 'liquid');
+                components.bindComponentEvents(container, 'buttons', 'particle');
+            });
+        });
+
+        console.log('🎨 OverFlux Components Demo loaded!');
+        console.log('📦 Available components:', components.getLibraryInfo());
+    </script>
+</body>
+</html>

@@ -1,0 +1,485 @@
+/* ===== FORM COMPONENTS ===== */
+
+/* Neon Form Styles */
+.overflux-neon-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid var(--neon-color, #00ffff);
+  border-radius: 15px;
+  box-shadow: 0 0 30px var(--neon-color, #00ffff);
+}
+
+.neon-form-title {
+  text-align: center;
+  color: var(--neon-color, #00ffff);
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 10px var(--neon-color, #00ffff);
+}
+
+.neon-field-group {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.neon-field {
+  width: 100%;
+  padding: 1rem;
+  background: transparent;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 8px;
+  color: var(--neon-color, #00ffff);
+  font-family: 'Courier New', monospace;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.neon-field:focus {
+  border-color: var(--neon-color, #00ffff);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.neon-label {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: rgba(0, 255, 255, 0.7);
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.neon-field:focus + .neon-label,
+.neon-field:not(:placeholder-shown) + .neon-label {
+  top: -0.5rem;
+  left: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--neon-color, #00ffff);
+  background: rgba(0, 0, 0, 0.8);
+  padding: 0 0.5rem;
+}
+
+.neon-field-border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--neon-color, #00ffff);
+  transition: width 0.3s ease;
+}
+
+.neon-field:focus ~ .neon-field-border {
+  width: 100%;
+}
+
+.neon-submit-btn {
+  width: 100%;
+  padding: 1rem;
+  background: transparent;
+  border: 2px solid var(--neon-color, #00ffff);
+  border-radius: 8px;
+  color: var(--neon-color, #00ffff);
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.neon-submit-btn:hover {
+  background: rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 30px var(--neon-color, #00ffff);
+}
+
+.neon-btn-text {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 0 10px var(--neon-color, #00ffff);
+}
+
+.neon-btn-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid var(--neon-color, #00ffff);
+  border-radius: inherit;
+  animation: neon-border-pulse 2s ease-in-out infinite;
+}
+
+.neon-sparks {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.spark {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: var(--neon-color, #00ffff);
+  border-radius: 50%;
+  animation: spark-fly 3s ease-in-out infinite;
+}
+
+.spark-1 {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.spark-2 {
+  top: 70%;
+  right: 20%;
+  animation-delay: 1s;
+}
+
+.spark-3 {
+  bottom: 30%;
+  left: 80%;
+  animation-delay: 2s;
+}
+
+@keyframes neon-border-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 5px var(--neon-color, #00ffff),
+      inset 0 0 5px var(--neon-color, #00ffff);
+  }
+  50% {
+    box-shadow: 
+      0 0 20px var(--neon-color, #00ffff),
+      inset 0 0 10px var(--neon-color, #00ffff);
+  }
+}
+
+@keyframes spark-fly {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(5px, -5px) scale(1);
+    opacity: 1;
+  }
+  80% {
+    transform: translate(15px, -15px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(25px, -25px) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Glass Form Styles */
+.overflux-glass-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-form-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  z-index: -1;
+}
+
+.glass-form-title {
+  text-align: center;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.glass-field-group {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.glass-field {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  color: white;
+  outline: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.glass-field:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+}
+
+.glass-label {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.glass-field:focus + .glass-label,
+.glass-field:not(:placeholder-shown) + .glass-label {
+  top: -0.5rem;
+  left: 0.5rem;
+  font-size: 0.8rem;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0 0.5rem;
+  border-radius: 4px;
+}
+
+.glass-field-glow {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), transparent);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glass-field:focus ~ .glass-field-glow {
+  opacity: 1;
+}
+
+.glass-submit-btn {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.glass-submit-btn:hover {
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.glass-btn-glow {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.4), transparent);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glass-submit-btn:hover .glass-btn-glow {
+  opacity: 1;
+}
+
+/* Floating Form Styles */
+.overflux-floating-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.form-title {
+  text-align: center;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.floating-field-group {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.floating-field {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: white;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.floating-field:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.floating-label {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.floating-field:focus + .floating-label,
+.floating-field:not(:placeholder-shown) + .floating-label {
+  top: -0.5rem;
+  left: 0.5rem;
+  font-size: 0.8rem;
+  color: white;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0 0.5rem;
+  border-radius: 4px;
+}
+
+.field-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  transition: width 0.3s ease;
+}
+
+.floating-field:focus ~ .field-line {
+  width: 100%;
+}
+
+.form-submit-btn {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.form-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+}
+
+.btn-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.btn-particles::before,
+.btn-particles::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  opacity: 0;
+  animation: particle-float 2s ease-in-out infinite;
+}
+
+.btn-particles::before {
+  top: 30%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.btn-particles::after {
+  top: 60%;
+  right: 25%;
+  animation-delay: 1s;
+}
+
+@keyframes particle-float {
+  0%, 100% {
+    opacity: 0;
+    transform: translateY(0) scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1);
+  }
+}
+
+/* Responsive Design for Forms */
+@media (max-width: 768px) {
+  .overflux-neon-form,
+  .overflux-glass-form,
+  .overflux-floating-form {
+    margin: 1rem;
+    padding: 1.5rem;
+    max-width: none;
+  }
+  
+  .neon-form-title,
+  .glass-form-title,
+  .form-title {
+    font-size: 1.5rem;
+  }
+  
+  .neon-field,
+  .glass-field,
+  .floating-field {
+    padding: 0.75rem;
+  }
+  
+  .neon-submit-btn,
+  .glass-submit-btn,
+  .form-submit-btn {
+    padding: 0.75rem;
+  }
+}

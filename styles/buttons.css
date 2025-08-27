@@ -1,0 +1,407 @@
+/* ===== BUTTON COMPONENTS ===== */
+
+/* Magnetic Buttons */
+.overflux-magnetic-btn {
+  position: relative;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 2rem;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+  transform-style: preserve-3d;
+}
+
+.overflux-magnetic-btn:hover {
+  transform: translateY(-8px) rotateX(15deg);
+  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.6);
+}
+
+.btn-magnetic-glow {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #667eea, #764ba2, #667eea);
+  border-radius: 52px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  filter: blur(8px);
+}
+
+.overflux-magnetic-btn.magnetic-active .btn-magnetic-glow {
+  opacity: 0.8;
+  animation: magnetic-glow 2s ease-in-out infinite;
+}
+
+@keyframes magnetic-glow {
+  0%, 100% { filter: blur(8px) brightness(1); }
+  50% { filter: blur(12px) brightness(1.2); }
+}
+
+/* Liquid Buttons */
+.overflux-liquid-btn {
+  position: relative;
+  background: transparent;
+  border: 2px solid var(--liquid-color, #6366f1);
+  border-radius: 50px;
+  padding: 1rem 2rem;
+  color: var(--liquid-color, #6366f1);
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.liquid-bg {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--liquid-color, #6366f1);
+  transition: top 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  z-index: -1;
+}
+
+.overflux-liquid-btn:hover .liquid-bg,
+.overflux-liquid-btn.liquid-active .liquid-bg {
+  top: 0;
+}
+
+.overflux-liquid-btn:hover {
+  color: white;
+  border-color: var(--liquid-color, #6366f1);
+  box-shadow: 0 15px 35px rgba(99, 102, 241, 0.3);
+}
+
+.liquid-drops {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.drop {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--liquid-color, #6366f1);
+  border-radius: 50%;
+  opacity: 0;
+  animation: liquid-drop 2s ease-in-out infinite;
+}
+
+.drop-1 { left: 20%; animation-delay: 0s; }
+.drop-2 { left: 50%; animation-delay: 0.7s; }
+.drop-3 { left: 80%; animation-delay: 1.4s; }
+
+@keyframes liquid-drop {
+  0% { 
+    top: -10px; 
+    opacity: 0; 
+    transform: scale(0.5);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  90% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% { 
+    top: 100%; 
+    opacity: 0; 
+    transform: scale(0.5);
+  }
+}
+
+/* Particle Buttons */
+.overflux-particle-btn {
+  position: relative;
+  background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+  border: none;
+  border-radius: 30px;
+  padding: 1rem 2rem;
+  color: #333;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Neon Buttons */
+.overflux-neon-btn {
+  position: relative;
+  background: transparent;
+  border: 2px solid var(--neon-color, #00ffff);
+  border-radius: 8px;
+  padding: 1rem 2rem;
+  color: var(--neon-color, #00ffff);
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Courier New', monospace;
+}
+
+.neon-btn-text {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 0 10px var(--neon-color, #00ffff);
+}
+
+.neon-btn-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid var(--neon-color, #00ffff);
+  border-radius: inherit;
+  animation: neon-border-pulse 2s ease-in-out infinite;
+}
+
+.neon-btn-glow {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  background: var(--neon-color, #00ffff);
+  border-radius: inherit;
+  filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.overflux-neon-btn:hover {
+  background: rgba(0, 255, 255, 0.1);
+  box-shadow: 
+    0 0 20px var(--neon-color, #00ffff),
+    inset 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+.overflux-neon-btn:hover .neon-btn-glow {
+  opacity: 0.3;
+}
+
+.neon-sparks {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.spark {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: var(--neon-color, #00ffff);
+  border-radius: 50%;
+  animation: spark-fly 3s ease-in-out infinite;
+}
+
+.spark-1 {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.spark-2 {
+  top: 70%;
+  right: 20%;
+  animation-delay: 1s;
+}
+
+.spark-3 {
+  bottom: 30%;
+  left: 80%;
+  animation-delay: 2s;
+}
+
+@keyframes neon-border-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 5px var(--neon-color, #00ffff),
+      inset 0 0 5px var(--neon-color, #00ffff);
+  }
+  50% {
+    box-shadow: 
+      0 0 20px var(--neon-color, #00ffff),
+      inset 0 0 10px var(--neon-color, #00ffff);
+  }
+}
+
+@keyframes spark-fly {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(5px, -5px) scale(1);
+    opacity: 1;
+  }
+  80% {
+    transform: translate(15px, -15px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(25px, -25px) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Morphing Buttons */
+.overflux-morphing-btn {
+  position: relative;
+  background: transparent;
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 2rem;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.morphing-text {
+  position: relative;
+  z-index: 3;
+  transition: all 0.3s ease;
+}
+
+.morphing-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.morph-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.morph-shape .morph-layer {
+  clip-path: circle(50% at 50% 50%);
+}
+
+.layer-1 {
+  transform: scale(1);
+  z-index: 1;
+}
+
+.layer-2 {
+  transform: scale(0.8);
+  z-index: 2;
+}
+
+.layer-3 {
+  transform: scale(0.6);
+  z-index: 3;
+}
+
+.overflux-morphing-btn:hover .layer-1 {
+  transform: scale(1.2);
+  opacity: 0.7;
+}
+
+.overflux-morphing-btn:hover .layer-2 {
+  transform: scale(1);
+  opacity: 0.8;
+}
+
+.overflux-morphing-btn:hover .layer-3 {
+  transform: scale(0.8);
+  opacity: 0.9;
+}
+
+.morphing-effect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.4s ease;
+}
+
+.overflux-morphing-btn:hover .morphing-effect {
+  width: 200px;
+  height: 200px;
+}
+
+.overflux-morphing-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.particle-system {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.particle.particle-active {
+  animation: particle-burst 1s ease-out forwards;
+}
+
+@keyframes particle-burst {
+  0% {
+    opacity: 0;
+    transform: scale(0) translate(0, 0);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0) translate(var(--random-x, 50px), var(--random-y, -50px));
+  }
+}
+
+/* Generate random positions for particles */
+.particle-0 { top: 20%; left: 10%; --random-x: -30px; --random-y: -40px; }
+.particle-1 { top: 30%; left: 20%; --random-x: 40px; --random-y: -30px; }
+.particle-2 { top: 50%; left: 15%; --random-x: -20px; --random-y: -50px; }
