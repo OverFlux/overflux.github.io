@@ -2,10 +2,38 @@
 // 🔥 KILLER FEATURES FOR MAXIMUM WOW-EFFECT 🔥
 
 // ===== CONSOLE OPTIMIZATION =====
-const DEBUG_MODE = false; // Set to false to reduce console messages
-const log = DEBUG_MODE ? console.log.bind(console) : () => {};
-const warn = DEBUG_MODE ? console.warn.bind(console) : () => {};
-const error = console.error.bind(console); // Always show errors
+const DEBUG_MODE = localStorage.getItem('overflux_debug') === 'true' || 
+                  window.location.search.includes('debug=true') || 
+                  window.location.hostname === 'localhost';
+                  
+const log = (...args) => {
+  if (DEBUG_MODE) {
+    console.log('[OverFlux]', ...args);
+  }
+};
+
+const warn = (...args) => {
+  if (DEBUG_MODE) {
+    console.warn('[OverFlux]', ...args);
+  }
+};
+
+const error = (...args) => {
+  console.error('[OverFlux]', ...args); // Always show errors
+};
+
+// Debug helpers
+window.overfluxDebug = {
+  enable: () => {
+    localStorage.setItem('overflux_debug', 'true');
+    console.log('OverFlux debug mode enabled. Reload the page.');
+  },
+  disable: () => {
+    localStorage.setItem('overflux_debug', 'false');
+    console.log('OverFlux debug mode disabled. Reload the page.');
+  },
+  status: () => console.log('Debug mode:', DEBUG_MODE)
+};
 
 // Performance monitoring
 const perfMonitor = {
@@ -450,32 +478,155 @@ class ThemeManager {
   constructor() {
     this.theme = localStorage.getItem('theme') ||
       (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    this.isTransitioning = false;
     this.init();
   }
 
   init() {
     this.applyTheme();
     this.bindEvents();
+    this.setupThemeTransition();
+  }
+
+  setupThemeTransition() {
+    // Add smooth transition for theme changes
+    const style = document.createElement('style');
+    style.textContent = `
+      * {
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      }
+      
+      .theme-transitioning {
+        pointer-events: none;
+      }
+    `;
+    document.head.appendChild(style);
   }
 
   applyTheme() {
     document.documentElement.setAttribute('data-theme', this.theme);
     const themeIcon = $('.theme-toggle-icon');
+    const themeToggle = $('.theme-toggle');
+    
     if (themeIcon) {
       themeIcon.textContent = this.theme === 'dark' ? '☀️' : '🌙';
+      themeIcon.style.transform = this.theme === 'dark' ? 'rotate(180deg)' : 'rotate(0deg)';
     }
+    
+    if (themeToggle) {
+      themeToggle.title = `Switch to ${this.theme === 'dark' ? 'light' : 'dark'} theme`;
+      themeToggle.setAttribute('aria-label', `Switch to ${this.theme === 'dark' ? 'light' : 'dark'} theme`);
+    }
+    
+    // Update meta theme-color
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      metaThemeColor.content = this.theme === 'dark' ? '#1f2937' : '#6366f1';
+    }
+    
+    // Dispatch theme change event
+    document.dispatchEvent(new CustomEvent('themeChanged', {
+      detail: { theme: this.theme }
+    }));
   }
 
-  toggle() {
+  async toggle() {
+    if (this.isTransitioning) return;
+    
+    this.isTransitioning = true;
+    document.body.classList.add('theme-transitioning');
+    
+    // Add ripple effect
+    this.createThemeRipple();
+    
+    // Short delay for visual effect
+    await new Promise(resolve => setTimeout(resolve, 150));
+    
     this.theme = this.theme === 'dark' ? 'light' : 'dark';
     this.applyTheme();
     localStorage.setItem('theme', this.theme);
+    
+    // Animate elements
+    this.animateThemeChange();
+    
+    setTimeout(() => {
+      this.isTransitioning = false;
+      document.body.classList.remove('theme-transitioning');
+    }, 300);
+    
+    log(`🎨 Theme switched to ${this.theme} mode`);
+  }
+  
+  createThemeRipple() {
+    const themeToggle = $('.theme-toggle');
+    if (!themeToggle) return;
+    
+    const ripple = document.createElement('div');
+    const rect = themeToggle.getBoundingClientRect();
+    
+    ripple.style.cssText = `
+      position: fixed;
+      top: ${rect.top + rect.height/2}px;
+      left: ${rect.left + rect.width/2}px;
+      width: 0;
+      height: 0;
+      background: ${this.theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'};
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 10000;
+      animation: theme-ripple 0.6s ease-out forwards;
+    `;
+    
+    document.body.appendChild(ripple);
+    
+    // Add keyframe animation
+    if (!document.querySelector('#theme-ripple-animation')) {
+      const style = document.createElement('style');
+      style.id = 'theme-ripple-animation';
+      style.textContent = `
+        @keyframes theme-ripple {
+          to {
+            width: 200vw;
+            height: 200vw;
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+    
+    setTimeout(() => {
+      document.body.removeChild(ripple);
+    }, 600);
+  }
+  
+  animateThemeChange() {
+    // Animate specific elements for theme change
+    const animatedElements = $$('.glass-effect, .about-card, .portfolio-item');
+    
+    animatedElements.forEach((element, index) => {
+      setTimeout(() => {
+        element.style.transform = 'scale(1.02)';
+        setTimeout(() => {
+          element.style.transform = 'scale(1)';
+        }, 100);
+      }, index * 20);
+    });
   }
 
   bindEvents() {
     const themeToggle = $('.theme-toggle');
     if (themeToggle) {
       themeToggle.addEventListener('click', () => this.toggle());
+      
+      // Add keyboard support
+      themeToggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.toggle();
+        }
+      });
     }
 
     // Listen for system theme changes
@@ -483,6 +634,14 @@ class ThemeManager {
       if (!localStorage.getItem('theme')) {
         this.theme = e.matches ? 'dark' : 'light';
         this.applyTheme();
+      }
+    });
+    
+    // Keyboard shortcut (Ctrl/Cmd + Shift + T)
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 't') {
+        e.preventDefault();
+        this.toggle();
       }
     });
   }
@@ -1318,6 +1477,10 @@ class OverFluxApp {
 
       // Initialize existing components
       this.components.theme = new ThemeManager();
+      
+      // Expose theme manager globally for backup button
+      window.themeManager = this.components.theme;
+      
       this.components.navigation = new NavigationManager();
       this.components.team = new TeamManager();
       this.components.portfolio = new PortfolioManager();
@@ -1334,6 +1497,9 @@ class OverFluxApp {
 
       // Initialize wow effects
       this.initializeWowEffects();
+
+      // Initialize demo components
+      this.initializeDemoComponents();
 
       this.isLoaded = true;
       log('OverFlux application with killer features initialized successfully \u2728');
@@ -1402,6 +1568,45 @@ class OverFluxApp {
     return transforms[animation] || 'translateY(50px)';
   }
 
+  initializeDemoComponents() {
+    // Wait for component library to be available
+    if (typeof OverFluxComponentLibrary === 'undefined') {
+      setTimeout(() => this.initializeDemoComponents(), 200);
+      return;
+    }
+
+    try {
+      const componentLib = new OverFluxComponentLibrary();
+
+      // Initialize buttons demo in about section
+      const buttonsContainer = $('#about-buttons-demo');
+      if (buttonsContainer) {
+        buttonsContainer.innerHTML = `
+          ${componentLib.getComponent('buttons', 'neon', { text: 'Neon', color: '#00ffff', size: 'small' })}
+          ${componentLib.getComponent('buttons', 'magnetic', { text: 'Magnetic', size: 'small' })}
+          ${componentLib.getComponent('buttons', 'liquid', { text: 'Liquid', size: 'small' })}
+        `;
+        componentLib.bindComponentEvents(buttonsContainer, 'buttons', 'magnetic');
+        componentLib.bindComponentEvents(buttonsContainer, 'buttons', 'liquid');
+      }
+
+      // Initialize cards demo in about section
+      const cardsContainer = $('#about-cards-demo');
+      if (cardsContainer) {
+        cardsContainer.innerHTML = `
+          ${componentLib.getComponent('cards', 'glassmorphism', { 
+            title: 'Innovation Hub', 
+            content: 'Cutting-edge solutions with modern design patterns and seamless user experiences.' 
+          })}
+        `;
+      }
+
+      log('✅ Demo components initialized');
+    } catch (error) {
+      console.warn('⚠️ Demo components not available:', error.message);
+    }
+  }
+
   setupParticleEffects() {
     // Create floating particles for various sections
     const particleContainers = $$('.hero-section, .section-about');
@@ -1454,7 +1659,7 @@ class OverFluxApp {
   }
 
   addRippleEffects() {
-    const rippleElements = $$('.btn, button, .team-nav-btn, .filter-btn');
+    const rippleElements = $$('.btn, button:not(.theme-toggle), .team-nav-btn, .filter-btn');
 
     rippleElements.forEach(element => {
       element.addEventListener('click', (e) => {

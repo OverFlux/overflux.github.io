@@ -90,11 +90,6 @@
     <link rel="stylesheet" href="styles/effects.css">
   </noscript>
 
-  <link rel="stylesheet" href="styles/killer-features.css" media="print" onload="this.media='all'">
-  <noscript>
-    <link rel="stylesheet" href="styles/killer-features.css">
-  </noscript>
-
 
   <!-- Fallback for browsers without JS -->
   <noscript>
@@ -103,7 +98,6 @@
     <link rel="stylesheet" href="styles/forms.css">
     <link rel="stylesheet" href="styles/loaders.css">
     <link rel="stylesheet" href="styles/effects.css">
-    <link rel="stylesheet" href="styles/killer-features.css">
   </noscript>
 
   <!-- Scripts loaded asynchronously with optimized loading strategy -->
@@ -177,9 +171,45 @@
 <a href="#main" class="skip-link">Skip to main content</a>
 
 <!-- Theme toggle button -->
-<button class="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme">
+<button class="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme" style="position: fixed !important; top: 1rem !important; right: -13px !important; left: auto !important; z-index: 99999 !important;">
   <span class="theme-toggle-icon">🌙</span>
 </button>
+
+<!-- Immediate theme toggle functionality -->
+<script>
+  // Immediate theme toggle setup
+  function toggleThemeImmediate() {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    
+    // Update button icons
+    const icons = document.querySelectorAll('.theme-toggle-icon');
+    icons.forEach(icon => {
+      icon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    });
+    
+    console.log('Theme switched to:', newTheme);
+  }
+  
+  // Bind immediate functionality to theme toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.querySelector('.theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', toggleThemeImmediate);
+    }
+    
+    // Apply saved theme immediately
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    const icons = document.querySelectorAll('.theme-toggle-icon');
+    icons.forEach(icon => {
+      icon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+    });
+  });
+</script>
 
 <!-- Header with navigation -->
 <header class="header">
@@ -368,6 +398,24 @@
               We tailor our approach to fit your project's unique needs, adapting to any challenge or requirement.
             </p>
           </article>
+        </div>
+
+        <!-- Interactive Component Showcase -->
+        <div class="component-showcase">
+          <h3 class="showcase-title">Interactive Components</h3>
+          <p class="showcase-subtitle">Experience our cutting-edge UI components</p>
+          
+          <div class="showcase-grid">
+            <div class="showcase-item" data-aos="fade-up">
+              <h4>Advanced Buttons</h4>
+              <div class="demo-buttons" id="about-buttons-demo"></div>
+            </div>
+            
+            <div class="showcase-item" data-aos="fade-up" data-aos-delay="200">
+              <h4>Interactive Cards</h4>
+              <div class="demo-cards" id="about-cards-demo"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

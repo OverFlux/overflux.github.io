@@ -1,3 +1,116 @@
+/* ===== HOLOGRAPHIC HUD SYSTEM ===== */
+.holographic-hud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+.hud-element {
+  position: absolute;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 255, 255, 0.5);
+  border-radius: 4px;
+  backdrop-filter: blur(5px);
+  animation: hud-flicker 3s ease-in-out infinite;
+}
+
+.hud-top-left {
+  top: 2rem;
+  left: 2rem;
+}
+
+.hud-top-right {
+  top: 2rem;
+  right: 2rem;
+}
+
+.hud-bottom-left {
+  bottom: 2rem;
+  left: 2rem;
+}
+
+.hud-bottom-right {
+  bottom: 2rem;
+  right: 2rem;
+}
+
+.hud-indicator {
+  width: 8px;
+  height: 8px;
+  background: #00ff00;
+  border-radius: 50%;
+  margin-top: 0.5rem;
+  animation: hud-pulse 1s ease-in-out infinite;
+  box-shadow: 0 0 10px #00ff00;
+}
+
+.hud-progress {
+  width: 100px;
+  height: 4px;
+  background: rgba(0, 255, 255, 0.2);
+  margin-top: 0.5rem;
+  position: relative;
+}
+
+.hud-progress .progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #00ffff, #00ff00);
+  animation: progress-flow 2s ease-in-out infinite;
+}
+
+.hud-counter {
+  color: #00ff00;
+  animation: counter-update 0.1s ease-in-out;
+}
+
+.hud-pulse {
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle, #ff0040, transparent 70%);
+  border-radius: 50%;
+  margin-top: 0.5rem;
+  animation: pulse-radar 2s ease-in-out infinite;
+}
+
+@keyframes hud-flicker {
+  0%, 95% { opacity: 1; }
+  96% { opacity: 0.8; }
+  97% { opacity: 1; }
+  98% { opacity: 0.9; }
+  100% { opacity: 1; }
+}
+
+@keyframes hud-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.2); }
+}
+
+@keyframes progress-flow {
+  0% { background-position: 0 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+
+@keyframes counter-update {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes pulse-radar {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
 /* ===== EFFECT COMPONENTS ===== */
 
 /* Custom Cursor Effects */
@@ -551,6 +664,15 @@
   .magnetic-field {
     display: none;
   }
+
+  /* HUD optimizations for mobile */
+  .holographic-hud {
+    font-size: 10px;
+  }
+
+  .hud-element {
+    padding: 0.5rem;
+  }
 }
 
 /* Reduced motion preferences */
@@ -559,7 +681,11 @@
   .glitch-layer,
   .effect-particle,
   .wave-line,
-  .cursor-trail {
+  .cursor-trail,
+  .hud-element,
+  .hud-indicator,
+  .hud-progress .progress-bar,
+  .hud-pulse {
     animation: none;
   }
 

@@ -1,4 +1,8 @@
 /* ===== CSS CUSTOM PROPERTIES (VARIABLES) ===== */
+/* 
+ * Global design tokens for consistent theming
+ * Organized by: Colors → Spacing → Typography → Transitions → Shadows
+ */
 :root {
   /* Colors - Light Theme */
   --color-primary: #6366f1;
@@ -197,7 +201,135 @@
   100% { transform: translate(-100px, -100px) rotate(360deg); }
 }
 
-/* ===== CUSTOM CURSOR ===== */
+/* ===== ADVANCED VISUAL EFFECTS ===== */
+
+/* Quantum Grid Overlay */
+.quantum-grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.3;
+}
+
+.grid-lines {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.grid-horizontal {
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 100px,
+    rgba(0, 255, 255, 0.1) 100px,
+    rgba(0, 255, 255, 0.1) 101px
+  );
+  animation: grid-shift-horizontal 20s linear infinite;
+}
+
+.grid-vertical {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 100px,
+    rgba(0, 255, 255, 0.1) 100px,
+    rgba(0, 255, 255, 0.1) 101px
+  );
+  animation: grid-shift-vertical 25s linear infinite;
+}
+
+.quantum-nodes {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.quantum-node {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.8), transparent 70%);
+  border-radius: 50%;
+  animation: quantum-pulse 3s ease-in-out infinite;
+}
+
+.node-1 {
+  top: 20%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.node-2 {
+  top: 60%;
+  right: 20%;
+  animation-delay: 0.8s;
+}
+
+.node-3 {
+  bottom: 30%;
+  left: 30%;
+  animation-delay: 1.5s;
+}
+
+.node-4 {
+  top: 40%;
+  left: 70%;
+  animation-delay: 2.3s;
+}
+
+@keyframes grid-shift-horizontal {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(100px); }
+}
+
+@keyframes grid-shift-vertical {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100px); }
+}
+
+@keyframes quantum-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+  }
+  50% {
+    transform: scale(2);
+    opacity: 1;
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.8), 0 0 80px rgba(0, 255, 255, 0.3);
+  }
+}
+
+/* WebGL Particle Canvas */
+.overflux-particles-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+/* Utility Classes */
+.overflux-hidden { opacity: 0; visibility: hidden; }
+.overflux-visible { opacity: 1; visibility: visible; }
+.overflux-disabled { pointer-events: none; opacity: 0.5; }
+.overflux-loading { cursor: wait; }
+
+/* Size Variants */
+.size-small { transform: scale(0.8); }
+.size-medium { transform: scale(1); }
+.size-large { transform: scale(1.2); }
+.size-xl { transform: scale(1.5); }
+
+/* ===== EXISTING STYLES CONTINUE ===== */
 .custom-cursor {
   position: fixed;
   top: 0;
@@ -380,34 +512,99 @@ ol {
 
 /* ===== THEME TOGGLE ===== */
 .theme-toggle {
-  position: fixed;
-  top: var(--space-4);
-  right: var(--space-4);
-  width: 48px;
-  height: 48px;
+  position: fixed !important; /* Override any inline position styles */
+  top: var(--space-4) !important;
+  right: -13px !important; /* Move 1/4 of button width (52px / 4 = 13px) beyond right edge */
+  left: auto !important; /* Ensure it's positioned from the right, not left */
+  width: 52px;
+  height: 52px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-full);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
-  z-index: var(--z-fixed);
-  transition: all var(--transition-base);
-  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  z-index: 99999 !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: var(--shadow-glass);
+  user-select: none;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .theme-toggle:hover {
-  transform: scale(1.05);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px) scale(1.05);
+  right: var(--space-4); /* Slide into normal position */
+  box-shadow: var(--shadow-glass-hover);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.theme-toggle:active {
+  transform: translateY(0) scale(0.95);
+  transition: all 0.1s ease;
+}
+
+.theme-toggle:focus {
+  outline: none;
+  box-shadow: var(--shadow-glass-hover), 0 0 0 3px rgba(99, 102, 241, 0.3);
 }
 
 .theme-toggle-icon {
-  font-size: var(--font-size-lg);
-  transition: transform var(--transition-base);
+  font-size: var(--font-size-xl);
+  transition: transform 0.3s ease;
+  transform-origin: center;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  display: block;
 }
 
 .theme-toggle:hover .theme-toggle-icon {
-  transform: rotate(15deg);
+  transform: scale(1.1);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+/* Enhanced theme transition effects */
+[data-theme="dark"] .theme-toggle {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Ripple effect for theme toggle */
+.theme-toggle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.theme-toggle:active::before {
+  width: 100px;
+  height: 100px;
+  opacity: 0;
+}
+
+/* Fallback styles if JavaScript fails */
+noscript + .theme-toggle,
+.no-js .theme-toggle {
+  display: flex !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 2px solid rgba(99, 102, 241, 0.8) !important;
 }
 
 /* ===== HEADER & NAVIGATION ===== */
@@ -569,12 +766,14 @@ ol {
     border-top: 1px solid var(--color-border);
     box-shadow: var(--shadow-lg);
     flex-direction: column;
-    gap: 0;
-    padding: var(--space-4);
+    gap: var(--space-2);
+    padding: var(--space-6) var(--space-4);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
     transition: all var(--transition-base);
+    max-height: 80vh;
+    overflow-y: auto;
   }
 
   .nav-links.active {
@@ -585,9 +784,12 @@ ol {
 
   .nav-link {
     width: 100%;
-    padding: var(--space-3);
+    padding: var(--space-4) var(--space-3);
     text-align: center;
     border-radius: var(--radius-lg);
+    margin-bottom: var(--space-2);
+    display: block;
+    line-height: 1.4;
   }
 }
 
@@ -1216,6 +1418,78 @@ main {
   line-height: var(--line-height-relaxed);
 }
 
+/* Component Showcase */
+.component-showcase {
+  margin-top: var(--space-20);
+  padding: var(--space-16);
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-glass);
+}
+
+.showcase-title {
+  font-family: var(--font-family-display), sans-serif;
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  margin-bottom: var(--space-3);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.showcase-subtitle {
+  text-align: center;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-12);
+  font-size: var(--font-size-lg);
+}
+
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-8);
+}
+
+.showcase-item {
+  padding: var(--space-6);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all var(--transition-base);
+}
+
+.showcase-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.showcase-item h4 {
+  font-family: var(--font-family-display), sans-serif;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-4);
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+.demo-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: center;
+}
+
+.demo-cards {
+  display: grid;
+  gap: var(--space-4);
+}
+
 
 /* ===== PORTFOLIO SECTION ===== */
 .portfolio-content {
@@ -1803,6 +2077,55 @@ main {
     width: 48px;
     height: 48px;
   }
+
+  /* Mobile optimizations for advanced features */
+  .quantum-grid-overlay {
+    opacity: 0.1;
+  }
+
+  .quantum-node {
+    width: 12px;
+    height: 12px;
+  }
+
+  .overflux-particles-canvas {
+    opacity: 0.3;
+  }
+
+  /* Component showcase mobile optimizations */
+  .component-showcase {
+    padding: var(--space-8);
+    margin-top: var(--space-12);
+  }
+
+  .showcase-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .demo-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .theme-toggle {
+    width: 44px;
+    height: 44px;
+    top: var(--space-3);
+    right: -11px; /* 1/4 of mobile button width (44px / 4 = 11px) */
+    left: auto; /* Ensure positioning from right */
+    z-index: 99999;
+  }
+  
+  .theme-toggle:hover {
+    right: var(--space-3); /* Slide into normal mobile position */
+    transform: translateY(-2px) scale(1.05);
+  }
+  
+  /* Ensure theme toggle doesn't interfere with mobile menu */
+  .mobile-menu-toggle {
+    margin-right: 50px; /* Space for peeking theme toggle */
+  }
 }
 
 @media (max-width: 480px) {
@@ -2179,23 +2502,6 @@ main {
   animation: particle-drift 15s linear infinite;
 }
 
-@keyframes particle-drift {
-  0% {
-    transform: translate(0, 100vh) scale(0);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translate(100px, -100px) scale(1);
-    opacity: 0;
-  }
-}
-
 /* ===== ADVANCED SCROLL EFFECTS ===== */
 [data-scroll-reveal] {
   opacity: 0;
@@ -2223,17 +2529,6 @@ button,
   transition: all 0.3s ease;
   pointer-events: none;
   animation: magnetic-pulse 2s ease-in-out infinite;
-}
-
-@keyframes magnetic-pulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.3;
-  }
-  50% {
-    transform: scale(1.05);
-    opacity: 0.6;
-  }
 }
 
 /* ===== ENHANCED CURSORS ===== */
@@ -2275,11 +2570,19 @@ a, button, [role="button"], input, textarea, select {
 }
 
 /* ===== PERFORMANCE OPTIMIZATIONS ===== */
+/* 
+ * Reduced motion preferences for accessibility
+ * Mobile optimizations for better performance
+ * Progressive enhancement approach
+ */
 @media (prefers-reduced-motion: reduce) {
   .floating-shapes .shape,
   .gradient-orbs .orb,
   .hero-particles,
-  .floating-particles {
+  .floating-particles,
+  .quantum-node,
+  .grid-horizontal,
+  .grid-vertical {
     animation: none;
   }
 
@@ -2296,6 +2599,11 @@ a, button, [role="button"], input, textarea, select {
   .hero-title {
     animation: hero-title-reveal 0.5s ease-out 0.2s forwards;
   }
+
+  /* Simplify quantum effects for reduced motion */
+  .quantum-grid-overlay {
+    opacity: 0.1;
+  }
 }
 
 /* ===== DARK THEME GLASSMORPHISM ===== */
@@ -2311,6 +2619,41 @@ a, button, [role="button"], input, textarea, select {
 
 [data-theme="dark"] .project-card {
   background: rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .component-showcase {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .showcase-item {
+  background: rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .showcase-item:hover {
+  background: rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Dark theme color adjustments */
+[data-theme="dark"] {
+  --color-background: #0f172a;
+  --color-surface: #1e293b;
+  --color-border: #334155;
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #cbd5e1;
+  --color-text-muted: #94a3b8;
+}
+
+[data-theme="dark"] .hero-section {
+  background: linear-gradient(135deg,
+    rgba(15, 23, 42, 0.9) 0%,
+    rgba(30, 41, 59, 0.8) 100%);
+}
+
+[data-theme="dark"] .quantum-grid-overlay {
+  opacity: 0.2;
 }
 
 /* Hide default cursor on touch devices */
