@@ -81,35 +81,60 @@ class LoadingScreen {
   }
 
   init() {
-    if (!this.loadingElement) return;
-
+    if (!this.loadingElement) {
+      console.warn('⚠️ Loading screen element not found - skipping loading animation');
+      return;
+    }
+    
+    log('🎨 Initializing loading screen...');
+    log(`📊 Loading element found: ${this.loadingElement.id || this.loadingElement.className}`);
     this.simulateLoading();
     this.createLoadingParticles();
   }
 
   simulateLoading() {
+    log('🚀 Starting loading simulation...');
     let progress = 0;
     const interval = setInterval(() => {
       progress += Math.random() * 15;
       if (progress >= 100) {
         progress = 100;
         clearInterval(interval);
+        log('🏁 Loading complete, starting hide sequence...');
         setTimeout(() => this.hideLoading(), 500);
       }
 
       if (this.progressText) {
         this.progressText.textContent = `${Math.floor(progress)}%`;
       }
+      
+      // Debug progress every 25%
+      if (DEBUG_MODE && Math.floor(progress) % 25 === 0 && Math.floor(progress) > 0) {
+        log(`📋 Loading progress: ${Math.floor(progress)}%`);
+      }
     }, 100);
   }
 
   hideLoading() {
     if (this.loadingElement) {
+      log('🔄 Hiding loading screen...');
+      log(`📊 Current loading element state: display=${this.loadingElement.style.display}, opacity=${this.loadingElement.style.opacity}`);
+      
       this.loadingElement.style.opacity = '0';
       this.loadingElement.style.transform = 'scale(1.1)';
+      
+      // Ensure display none is set after animation completes
       setTimeout(() => {
-        this.loadingElement.style.display = 'none';
+        if (this.loadingElement) {
+          this.loadingElement.style.display = 'none';
+          this.loadingElement.setAttribute('hidden', 'true');
+          this.loadingElement.classList.add('hidden');
+          log('✅ Loading screen hidden successfully');
+          log(`📊 Final loading element state: display=${this.loadingElement.style.display}, opacity=${this.loadingElement.style.opacity}`);
+        }
       }, 600);
+    } else {
+      console.warn('⚠️ Loading element not found when trying to hide');
     }
   }
 
@@ -1518,13 +1543,56 @@ class OverFluxApp {
     return new Promise(resolve => {
       const checkLoading = () => {
         const loadingScreen = $('#loading-screen');
-        if (!loadingScreen || loadingScreen.style.display === 'none') {
+        
+        // Check if loading screen doesn't exist
+        if (!loadingScreen) {
+          log('✅ Loading screen not found - resolving');
+          resolve();
+          return;
+        }
+        
+        // Get computed styles to check actual visibility
+        const computedStyle = getComputedStyle(loadingScreen);
+        const opacity = parseFloat(loadingScreen.style.opacity || '1');
+        const display = loadingScreen.style.display;
+        const computedDisplay = computedStyle.display;
+        const computedOpacity = parseFloat(computedStyle.opacity || '1');
+        
+        // Debug logging for deployment troubleshooting
+        if (DEBUG_MODE) {
+          log(`📊 Loading screen status: opacity=${opacity}, display=${display}, computedDisplay=${computedDisplay}, computedOpacity=${computedOpacity}`);
+        }
+        
+        // Check multiple conditions for loading screen being hidden
+        const isHidden = display === 'none' || 
+                        computedDisplay === 'none' || 
+                        opacity === 0 || 
+                        computedOpacity === 0 ||
+                        loadingScreen.hasAttribute('hidden') ||
+                        loadingScreen.classList.contains('hidden');
+        
+        if (isHidden) {
+          log('✅ Loading screen is hidden - resolving');
           resolve();
         } else {
           setTimeout(checkLoading, 100);
         }
       };
-      setTimeout(checkLoading, 3000); // Minimum loading time
+      
+      // Start checking after minimum loading time
+      setTimeout(checkLoading, 3000);
+      
+      // Fallback timeout in case loading screen never hides (prevents infinite loading)
+      setTimeout(() => {
+        log('⚠️ Loading screen timeout - forcing resolution');
+        const loadingScreen = $('#loading-screen');
+        if (loadingScreen) {
+          loadingScreen.style.opacity = '0';
+          loadingScreen.style.display = 'none';
+          loadingScreen.setAttribute('hidden', 'true');
+        }
+        resolve();
+      }, 10000); // 10 second fallback
     });
   }
 
@@ -1659,7 +1727,7 @@ class OverFluxApp {
   }
 
   addRippleEffects() {
-    const rippleElements = $$('.btn, button:not(.theme-toggle), .team-nav-btn, .filter-btn');
+    const rippleElements = $$('button:not(.theme-toggle), .btn:not(.theme-toggle), .team-nav-btn, .filter-btn');
 
     rippleElements.forEach(element => {
       element.addEventListener('click', (e) => {

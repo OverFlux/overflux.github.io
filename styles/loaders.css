@@ -278,7 +278,8 @@
 }
 
 /* Advanced Loading Screen */
-.loading-screen {
+.loading-screen,
+#loading-screen {
   position: fixed;
   top: 0;
   left: 0;
@@ -292,6 +293,28 @@
   justify-content: center;
   z-index: var(--z-loading);
   overflow: hidden;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Hidden state for loading screen */
+.loading-screen[style*="opacity: 0"],
+#loading-screen[style*="opacity: 0"],
+.loading-screen.hidden,
+#loading-screen.hidden,
+.loading-screen[hidden],
+#loading-screen[hidden] {
+  pointer-events: none;
+  opacity: 0 !important;
+}
+
+/* Ensure loading screen can be hidden via display none */
+.loading-screen[style*="display: none"],
+#loading-screen[style*="display: none"],
+.loading-screen.hidden,
+#loading-screen.hidden,
+.loading-screen[hidden],
+#loading-screen[hidden] {
+  display: none !important;
 }
 
 @keyframes gradient-flow {

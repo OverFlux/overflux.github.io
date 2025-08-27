@@ -171,7 +171,7 @@
 <a href="#main" class="skip-link">Skip to main content</a>
 
 <!-- Theme toggle button -->
-<button class="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme" style="position: fixed !important; top: 1rem !important; right: -13px !important; left: auto !important; z-index: 99999 !important;">
+<button class="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme">
   <span class="theme-toggle-icon">🌙</span>
 </button>
 
@@ -183,27 +183,27 @@
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
-    
+
     // Update button icons
     const icons = document.querySelectorAll('.theme-toggle-icon');
     icons.forEach(icon => {
       icon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
     });
-    
+
     console.log('Theme switched to:', newTheme);
   }
-  
+
   // Bind immediate functionality to theme toggle
   document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.querySelector('.theme-toggle');
     if (themeToggle) {
       themeToggle.addEventListener('click', toggleThemeImmediate);
     }
-    
+
     // Apply saved theme immediately
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
-    
+
     const icons = document.querySelectorAll('.theme-toggle-icon');
     icons.forEach(icon => {
       icon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
@@ -278,7 +278,7 @@
           <span class="hero-title-line">Welcome to</span>
           <span class="hero-title-line hero-title-highlight">OVERFLUX</span>
         </h1>
-        <p class="hero-description" data-scroll-reveal="up" data-delay="0.4">
+        <p class="hero-description" data-scroll-reveal="up" data-delay="0.4" style="margin-block-end: 10px;">
           Your creative space for art, innovation, and collaboration.
           <br>
           <span class="hero-subtitle">Building the future, one project at a time.</span>
@@ -404,13 +404,13 @@
         <div class="component-showcase">
           <h3 class="showcase-title">Interactive Components</h3>
           <p class="showcase-subtitle">Experience our cutting-edge UI components</p>
-          
+
           <div class="showcase-grid">
             <div class="showcase-item" data-aos="fade-up">
               <h4>Advanced Buttons</h4>
               <div class="demo-buttons" id="about-buttons-demo"></div>
             </div>
-            
+
             <div class="showcase-item" data-aos="fade-up" data-aos-delay="200">
               <h4>Interactive Cards</h4>
               <div class="demo-cards" id="about-cards-demo"></div>

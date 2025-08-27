@@ -1,5 +1,5 @@
 /* ===== CSS CUSTOM PROPERTIES (VARIABLES) ===== */
-/* 
+/*
  * Global design tokens for consistent theming
  * Organized by: Colors → Spacing → Typography → Transitions → Shadows
  */
@@ -16,9 +16,9 @@
   --color-error: #ef4444;
 
   /* Glassmorphism Colors */
-  --glass-bg: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --glass-shadow: rgba(0, 0, 0, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.35); /* More opaque for better visibility */
+  --glass-border: rgba(0, 0, 0, 0.15); /* Stronger dark border for light theme */
+  --glass-shadow: rgba(0, 0, 0, 0.2); /* Darker shadow for better contrast */
 
   /* Gradient Colors */
   --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -49,12 +49,12 @@
   --color-black: #000000;
 
   /* Semantic Colors */
-  --color-background: var(--color-white);
-  --color-surface: var(--color-gray-50);
-  --color-border: var(--color-gray-200);
+  --color-background: #f8fafc; /* Slightly off-white with subtle blue tint */
+  --color-surface: #f1f5f9; /* Light blue-gray for better contrast */
+  --color-border: var(--color-gray-300); /* More visible border */
   --color-text-primary: var(--color-gray-900);
-  --color-text-secondary: var(--color-gray-600);
-  --color-text-muted: var(--color-gray-500);
+  --color-text-secondary: var(--color-gray-700); /* Darker for better contrast */
+  --color-text-muted: var(--color-gray-600); /* Darker for better readability */
 
   /* Typography */
   --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -513,7 +513,7 @@ ol {
 /* ===== THEME TOGGLE ===== */
 .theme-toggle {
   position: fixed !important; /* Override any inline position styles */
-  top: var(--space-4) !important;
+  top: calc(var(--space-4) - 1px) !important; /* Raised by 5 pixels */
   right: -13px !important; /* Move 1/4 of button width (52px / 4 = 13px) beyond right edge */
   left: auto !important; /* Ensure it's positioned from the right, not left */
   width: 52px;
@@ -539,8 +539,8 @@ ol {
   transform: translateY(-2px) scale(1.05);
   right: var(--space-4); /* Slide into normal position */
   box-shadow: var(--shadow-glass-hover);
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.08); /* Subtle dark background for light theme */
+  border-color: rgba(0, 0, 0, 0.15);
 }
 
 .theme-toggle:active {
@@ -614,12 +614,12 @@ noscript + .theme-toggle,
   left: 0;
   right: 0;
   z-index: var(--z-fixed);
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(248, 250, 252, 0.95); /* Match the new background color */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-border);
   transition: all var(--transition-base);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
 }
 
 [data-theme="dark"] .header {
@@ -762,7 +762,7 @@ noscript + .theme-toggle,
     top: 100%;
     left: 0;
     right: 0;
-    background: var(--color-background);
+    background: var(--color-background); /* Use updated background color */
     border-top: 1px solid var(--color-border);
     box-shadow: var(--shadow-lg);
     flex-direction: column;
@@ -2111,17 +2111,17 @@ main {
   .theme-toggle {
     width: 44px;
     height: 44px;
-    top: var(--space-3);
+    top: calc(var(--space-3) - 5px); /* Raised by 5 pixels */
     right: -11px; /* 1/4 of mobile button width (44px / 4 = 11px) */
     left: auto; /* Ensure positioning from right */
     z-index: 99999;
   }
-  
+
   .theme-toggle:hover {
     right: var(--space-3); /* Slide into normal mobile position */
     transform: translateY(-2px) scale(1.05);
   }
-  
+
   /* Ensure theme toggle doesn't interfere with mobile menu */
   .mobile-menu-toggle {
     margin-right: 50px; /* Space for peeking theme toggle */
@@ -2570,7 +2570,7 @@ a, button, [role="button"], input, textarea, select {
 }
 
 /* ===== PERFORMANCE OPTIMIZATIONS ===== */
-/* 
+/*
  * Reduced motion preferences for accessibility
  * Mobile optimizations for better performance
  * Progressive enhancement approach
@@ -2654,6 +2654,125 @@ a, button, [role="button"], input, textarea, select {
 
 [data-theme="dark"] .quantum-grid-overlay {
   opacity: 0.2;
+}
+
+/* ===== LIGHT THEME OVERRIDES ===== */
+[data-theme="light"] {
+  --glass-bg: rgba(255, 255, 255, 0.4);
+  --glass-border: rgba(0, 0, 0, 0.15);
+  --glass-shadow: rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="light"] .glass-effect {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .project-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .component-showcase {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .showcase-item {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .showcase-item:hover {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .header {
+  background: rgba(248, 250, 252, 0.95);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .theme-toggle {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+}
+
+/* Light theme navigation */
+[data-theme="light"] .nav-links {
+  background: rgba(248, 250, 252, 0.98);
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .nav-link {
+  color: var(--color-text-secondary);
+}
+
+[data-theme="light"] .nav-link:hover,
+[data-theme="light"] .nav-link.active {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--color-primary);
+}
+
+/* Light theme hero and particles */
+[data-theme="light"] .hero-section {
+  background: linear-gradient(135deg,
+    rgba(99, 102, 241, 0.08) 0%,
+    rgba(6, 182, 212, 0.06) 100%);
+}
+
+[data-theme="light"] .floating-particle {
+  background: rgba(99, 102, 241, 0.4);
+}
+
+[data-theme="light"] .shape {
+  background: linear-gradient(45deg, rgba(0,0,0,0.08), rgba(0,0,0,0.04));
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+[data-theme="light"] .quantum-grid-overlay {
+  opacity: 0.1;
+}
+
+/* Light theme button overrides */
+[data-theme="light"] .overflux-magnetic-btn {
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+}
+
+[data-theme="light"] .overflux-magnetic-btn:hover {
+  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+}
+
+[data-theme="light"] .overflux-liquid-btn {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+[data-theme="light"] .overflux-liquid-btn:hover {
+  box-shadow: 0 15px 35px rgba(99, 102, 241, 0.2);
+}
+
+[data-theme="light"] .overflux-neon-btn {
+  border-color: var(--color-secondary);
+  color: var(--color-secondary);
 }
 
 /* Hide default cursor on touch devices */
