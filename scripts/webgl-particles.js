@@ -30,7 +30,7 @@ class OverFluxParticleSystem {
       this.gl.clearColor(0.0, 0.0, 0.0, 0.0);
       
       // Only log in debug mode
-      if (DEBUG_MODE) console.log('🔥 WebGL Particle System initialized');
+      if (DEBUG_MODE) console.log('🔥 WebGL Particle System initialized.');
     } catch (error) {
       console.warn('WebGL not available, falling back to canvas particles:', error);
       this.fallbackToCanvas();
