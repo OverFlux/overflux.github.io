@@ -41,8 +41,12 @@
 }
 
 @keyframes magnetic-glow {
-  0%, 100% { filter: blur(8px) brightness(1); }
-  50% { filter: blur(12px) brightness(1.2); }
+  0%, 100% {
+    filter: blur(8px) brightness(1);
+  }
+  50% {
+    filter: blur(12px) brightness(1.2);
+  }
 }
 
 /* Liquid Buttons */
@@ -101,14 +105,25 @@
   animation: liquid-drop 2s ease-in-out infinite;
 }
 
-.drop-1 { left: 20%; animation-delay: 0s; }
-.drop-2 { left: 50%; animation-delay: 0.7s; }
-.drop-3 { left: 80%; animation-delay: 1.4s; }
+.drop-1 {
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.drop-2 {
+  left: 50%;
+  animation-delay: 0.7s;
+}
+
+.drop-3 {
+  left: 80%;
+  animation-delay: 1.4s;
+}
 
 @keyframes liquid-drop {
-  0% { 
-    top: -10px; 
-    opacity: 0; 
+  0% {
+    top: -10px;
+    opacity: 0;
     transform: scale(0.5);
   }
   10% {
@@ -119,9 +134,9 @@
     opacity: 1;
     transform: scale(1);
   }
-  100% { 
-    top: 100%; 
-    opacity: 0; 
+  100% {
+    top: 100%;
+    opacity: 0;
     transform: scale(0.5);
   }
 }
@@ -190,9 +205,8 @@
 
 .overflux-neon-btn:hover {
   background: rgba(0, 255, 255, 0.1);
-  box-shadow: 
-    0 0 20px var(--neon-color, #00ffff),
-    inset 0 0 20px rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 20px var(--neon-color, #00ffff),
+  inset 0 0 20px rgba(0, 255, 255, 0.1);
 }
 
 .overflux-neon-btn:hover .neon-btn-glow {
@@ -237,14 +251,12 @@
 
 @keyframes neon-border-pulse {
   0%, 100% {
-    box-shadow: 
-      0 0 5px var(--neon-color, #00ffff),
-      inset 0 0 5px var(--neon-color, #00ffff);
+    box-shadow: 0 0 5px var(--neon-color, #00ffff),
+    inset 0 0 5px var(--neon-color, #00ffff);
   }
   50% {
-    box-shadow: 
-      0 0 20px var(--neon-color, #00ffff),
-      inset 0 0 10px var(--neon-color, #00ffff);
+    box-shadow: 0 0 20px var(--neon-color, #00ffff),
+    inset 0 0 10px var(--neon-color, #00ffff);
   }
 }
 
@@ -402,6 +414,23 @@
 }
 
 /* Generate random positions for particles */
-.particle-0 { top: 20%; left: 10%; --random-x: -30px; --random-y: -40px; }
-.particle-1 { top: 30%; left: 20%; --random-x: 40px; --random-y: -30px; }
-.particle-2 { top: 50%; left: 15%; --random-x: -20px; --random-y: -50px; }
+.particle-0 {
+  top: 20%;
+  left: 10%;
+  --random-x: -30px;
+  --random-y: -40px;
+}
+
+.particle-1 {
+  top: 30%;
+  left: 20%;
+  --random-x: 40px;
+  --random-y: -30px;
+}
+
+.particle-2 {
+  top: 50%;
+  left: 15%;
+  --random-x: -20px;
+  --random-y: -50px;
+}
