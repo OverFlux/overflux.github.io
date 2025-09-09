@@ -203,7 +203,7 @@ class OverFluxComponentLibrary {
       particles = 20
     } = options;
 
-    const particleElements = Array.from({ length: particles }, (_, i) => 
+    const particleElements = Array.from({length: particles}, (_, i) =>
       `<div class="particle particle-${i}" style="--delay: ${i * 0.1}s"></div>`
     ).join('');
 
@@ -268,7 +268,7 @@ class OverFluxComponentLibrary {
       position = 'center'
     } = options;
 
-    const navItems = items.map((item, index) => 
+    const navItems = items.map((item, index) =>
       `<li class="floating-nav-item" style="--delay: ${index * 0.1}s">
         <a href="#${item.toLowerCase()}" class="floating-nav-link">
           <span class="nav-text">${item}</span>
@@ -294,7 +294,7 @@ class OverFluxComponentLibrary {
       morphStyle = 'liquid'
     } = options;
 
-    const navItems = items.map((item, index) => 
+    const navItems = items.map((item, index) =>
       `<li class="morphing-nav-item" style="--delay: ${index * 0.15}s">
         <a href="#${item.toLowerCase()}" class="morphing-nav-link">
           <span class="morph-text">${item}</span>
@@ -323,14 +323,14 @@ class OverFluxComponentLibrary {
       particleCount = 30
     } = options;
 
-    const navItems = items.map((item, index) => 
+    const navItems = items.map((item, index) =>
       `<li class="particle-nav-item" style="--delay: ${index * 0.1}s">
         <a href="#${item.toLowerCase()}" class="particle-nav-link">
           <span class="particle-text">${item}</span>
           <div class="nav-particle-system">
-            ${Array.from({ length: 5 }, (_, i) => 
-              `<div class="nav-particle nav-particle-${i}"></div>`
-            ).join('')}
+            ${Array.from({length: 5}, (_, i) =>
+        `<div class="nav-particle nav-particle-${i}"></div>`
+      ).join('')}
           </div>
         </a>
       </li>`
@@ -343,9 +343,9 @@ class OverFluxComponentLibrary {
             ${navItems}
           </ul>
           <div class="nav-background-particles">
-            ${Array.from({ length: particleCount }, (_, i) => 
-              `<div class="bg-particle bg-particle-${i}" style="--delay: ${Math.random() * 3}s"></div>`
-            ).join('')}
+            ${Array.from({length: particleCount}, (_, i) =>
+      `<div class="bg-particle bg-particle-${i}" style="--delay: ${Math.random() * 3}s"></div>`
+    ).join('')}
           </div>
         </div>
       </nav>
@@ -364,10 +364,10 @@ class OverFluxComponentLibrary {
       const isTextarea = field === 'message';
       return `
         <div class="floating-field-group">
-          ${isTextarea 
-            ? `<textarea class="floating-field" id="${field}" placeholder=" " required></textarea>`
-            : `<input type="${field === 'email' ? 'email' : 'text'}" class="floating-field" id="${field}" placeholder=" " required>`
-          }
+          ${isTextarea
+        ? `<textarea class="floating-field" id="${field}" placeholder=" " required></textarea>`
+        : `<input type="${field === 'email' ? 'email' : 'text'}" class="floating-field" id="${field}" placeholder=" " required>`
+      }
           <label for="${field}" class="floating-label">${field.charAt(0).toUpperCase() + field.slice(1)}</label>
           <div class="field-line"></div>
         </div>
@@ -398,10 +398,10 @@ class OverFluxComponentLibrary {
       const isTextarea = field === 'message';
       return `
         <div class="neon-field-group">
-          ${isTextarea 
-            ? `<textarea class="neon-field" id="${field}" placeholder=" " required></textarea>`
-            : `<input type="${field === 'email' ? 'email' : 'text'}" class="neon-field" id="${field}" placeholder=" " required>`
-          }
+          ${isTextarea
+        ? `<textarea class="neon-field" id="${field}" placeholder=" " required></textarea>`
+        : `<input type="${field === 'email' ? 'email' : 'text'}" class="neon-field" id="${field}" placeholder=" " required>`
+      }
           <label for="${field}" class="neon-label">${field.charAt(0).toUpperCase() + field.slice(1)}</label>
           <div class="neon-field-border"></div>
         </div>
@@ -436,10 +436,10 @@ class OverFluxComponentLibrary {
       const isTextarea = field === 'message';
       return `
         <div class="glass-field-group">
-          ${isTextarea 
-            ? `<textarea class="glass-field" id="${field}" placeholder=" " required></textarea>`
-            : `<input type="${field === 'email' ? 'email' : 'text'}" class="glass-field" id="${field}" placeholder=" " required>`
-          }
+          ${isTextarea
+        ? `<textarea class="glass-field" id="${field}" placeholder=" " required></textarea>`
+        : `<input type="${field === 'email' ? 'email' : 'text'}" class="glass-field" id="${field}" placeholder=" " required>`
+      }
           <label for="${field}" class="glass-label">${field.charAt(0).toUpperCase() + field.slice(1)}</label>
           <div class="glass-field-glow"></div>
         </div>
@@ -503,7 +503,7 @@ class OverFluxComponentLibrary {
       color = '#6366f1'
     } = options;
 
-    const particles = Array.from({ length: particleCount }, (_, i) => 
+    const particles = Array.from({length: particleCount}, (_, i) =>
       `<div class="loader-particle particle-${i}" style="--delay: ${i * 0.1}s; --color: ${color}"></div>`
     ).join('');
 
@@ -569,7 +569,7 @@ class OverFluxComponentLibrary {
       type = 'floating'
     } = options;
 
-    const particles = Array.from({ length: count }, (_, i) => 
+    const particles = Array.from({length: count}, (_, i) =>
       `<div class="effect-particle particle-${i}" style="--delay: ${Math.random() * 2}s; --duration: ${2 + Math.random() * 3}s"></div>`
     ).join('');
 
@@ -587,7 +587,7 @@ class OverFluxComponentLibrary {
       direction = 'horizontal'
     } = options;
 
-    const waveElements = Array.from({ length: waves }, (_, i) => 
+    const waveElements = Array.from({length: waves}, (_, i) =>
       `<div class="wave-line wave-${i}" style="--delay: ${i * 0.2}s"></div>`
     ).join('');
 
@@ -737,7 +737,7 @@ class OverFluxComponentLibrary {
   // Batch component rendering
   renderComponents(configs) {
     configs.forEach(config => {
-      const { container, category, type, options } = config;
+      const {container, category, type, options} = config;
       this.renderComponent(container, category, type, options);
     });
   }
